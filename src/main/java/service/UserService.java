@@ -17,7 +17,7 @@ public class UserService {
     public void regUser(UserForm userForm) throws HibernateException {
         User user = new User();
         user.setUserName(userForm.getUsername());
-        user.setUserPassword(userForm.getPassword());
+        user.setPassword(userForm.getPassword());
         dao.saveObject(user);
     }
 

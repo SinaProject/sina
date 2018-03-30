@@ -26,7 +26,7 @@ public class UserDaoTest {
     public void saveObjectTest() {
         User user= new User();
         user.setUserName("yuyu");
-        user.setUserPassword("666");
+        user.setPassword("666");
 
         userDao.saveObject(user);
 
