@@ -12,19 +12,15 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
 
-@Repository
-@Transactional
-public class UserDao {
-    @Autowired
-    private SessionFactory sessionFactory;
+
+public interface UserDao {
 
 
-    public void saveObject(User user) throws HibernateException {
-        sessionFactory.getCurrentSession().save(user);
-    }
+     void saveObject(User user) throws HibernateException ;
 
-    public User getObject(Serializable id) throws HibernateException{
-        return (User)sessionFactory.getCurrentSession().get(User.class,id);
-    }
+
+     User getObject(Serializable id) throws HibernateException;
+
+
 
 }

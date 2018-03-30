@@ -16,7 +16,7 @@ import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:applicationContext.xml")
-
+@Transactional
 public class UserDaoTest {
 
     @Autowired
@@ -25,8 +25,8 @@ public class UserDaoTest {
     @Test
     public void saveObjectTest() {
         User user= new User();
-        user.setUserName("yuyu");
-        user.setPassword("666");
+        user.setUserName("tanshangou");
+        user.setPassword("123456");
 
         userDao.saveObject(user);
 

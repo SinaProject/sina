@@ -1,9 +1,6 @@
 package entity;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
@@ -21,6 +18,7 @@ public class Msg {
     private int userId;
 
     @Id
+    @GeneratedValue
     @Column(name = "msgID", nullable = false)
     public int getMsgId() {
         return msgId;
