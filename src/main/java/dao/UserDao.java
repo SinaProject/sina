@@ -11,16 +11,21 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
+import java.util.List;
 
 
 public interface UserDao {
 
+     
 
      void saveObject(User user) throws HibernateException ;
 
+     User getUser(Serializable id) throws HibernateException;
 
-     User getObject(Serializable id) throws HibernateException;
+     void deleteUser(Serializable id) throws HibernateException;
 
+     //获取所有用户
 
+     //获取
 
 }

@@ -1,17 +1,12 @@
 package dao;
 
 import entity.User;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
-
-import static org.junit.Assert.*;
-
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -34,7 +29,7 @@ public class UserDaoTest {
 
     @Test
     public void getObjectTest() {
-        User user = userDao.getObject(1);
+        User user = userDao.getUser(1);
 
         System.out.println(user.getUserName());
     }

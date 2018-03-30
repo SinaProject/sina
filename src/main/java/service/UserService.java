@@ -8,18 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import utils.UserForm;
 
-@Service
-public class UserService {
+public interface UserService {
 
-    @Autowired
-    private UserDao dao;
 
-    public void regUser(UserForm userForm) throws HibernateException {
-        User user = new User();
-        user.setUserName(userForm.getUsername());
-        user.setPassword(userForm.getPassword());
-        dao.saveObject(user);
-    }
+
+    void regUser(UserForm userForm) throws HibernateException;
 
 
 }
