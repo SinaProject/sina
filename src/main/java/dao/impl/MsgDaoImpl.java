@@ -3,6 +3,7 @@ package dao.impl;
 import dao.MsgDao;
 import entity.Msg;
 import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -82,16 +83,26 @@ public class MsgDaoImpl implements MsgDao {
 
     public void deleteTweet(int msgId) {
         Msg msg = getTweet(msgId);
-        sessionFactory.getCurrentSession().delete(msg);
+        if(msg!=null){
+            sessionFactory.getCurrentSession().delete(msg);
+        }else {
+            //TODO 删除的异常处理
+        }
+
     }
+
+
 
 
     /**
-     * 编辑一条微博
-     * 可以为任一方面的内容
-     * @param msg
+     * 变更微博
+     * 具体看业务层
      */
+
     public void updateTweet(Msg msg) {
+
         sessionFactory.getCurrentSession().update(msg);
     }
+
+
 }

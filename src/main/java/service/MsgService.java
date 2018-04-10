@@ -6,4 +6,5 @@ package service;
  * @description
  */
 public interface MsgService {
+
 }

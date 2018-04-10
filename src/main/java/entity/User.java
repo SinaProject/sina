@@ -154,4 +154,20 @@ public class User {
         result = 31 * result + (bkImage != null ? bkImage.hashCode() : 0);
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", userName='" + userName + '\'' +
+                ", userPicture='" + userPicture + '\'' +
+                ", password='" + password + '\'' +
+                ", sex='" + sex + '\'' +
+                ", userPhone='" + userPhone + '\'' +
+                ", userBlogAddress='" + userBlogAddress + '\'' +
+                ", userBirth=" + userBirth +
+                ", userInfo='" + userInfo + '\'' +
+                ", bkImage='" + bkImage + '\'' +
+                '}';
+    }
 }

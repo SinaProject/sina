@@ -4,7 +4,7 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="entity.Msg" table="msg" schema="sina">
+    <class name="entity.Msg" table="msg" dynamic-update="true" schema="sina">
         <id name="msgId">
             <column name="msgID" sql-type="int(11)"/>
         </id>

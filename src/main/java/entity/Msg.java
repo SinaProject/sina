@@ -168,4 +168,21 @@ public class Msg {
         result = 31 * result + userId;
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "Msg{" +
+                "msgId=" + msgId +
+                ", msgContent='" + msgContent + '\'' +
+                ", msgCollectNum=" + msgCollectNum +
+                ", msgForward=" + msgForward +
+                ", msgReplyNum=" + msgReplyNum +
+                ", msgDate=" + msgDate +
+                ", msgIsForward='" + msgIsForward + '\'' +
+                ", msgForwardId=" + msgForwardId +
+                ", masgLink='" + masgLink + '\'' +
+                ", msgZanNum=" + msgZanNum +
+                ", userId=" + userId +
+                '}';
+    }
 }
