@@ -1,9 +1,12 @@
 package entity;
 
+import org.hibernate.annotations.DynamicUpdate;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
+@DynamicUpdate
 public class Msg {
     private int msgId;
     private String msgContent;
@@ -39,7 +42,7 @@ public class Msg {
     }
 
     @Basic
-    @Column(name = "msgCollectNum", nullable = true)
+    @Column(name = "msgCollectNum", nullable = true,updatable = false,insertable = false)
     public Integer getMsgCollectNum() {
         return msgCollectNum;
     }
