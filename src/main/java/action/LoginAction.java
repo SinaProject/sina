@@ -1,21 +1,27 @@
 package action;
 
-
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import entity.User;
+import org.apache.struts2.interceptor.SessionAware;
 import org.springframework.beans.factory.annotation.Autowired;
 import service.UserService;
 import utils.UserForm;
 
 import java.util.Map;
 
-
-public class RegisterAction extends ActionSupport {
-
+/**
+ * @anthor tanshangou
+ * @time 2018/4/19
+ * @description
+ */
+public class LoginAction extends ActionSupport implements SessionAware {
     private static final long serialVersionUID = 1L;
 
 
     private UserForm user;
+
+    private Map session;
 
     @Autowired
     private UserService userService;
@@ -28,10 +34,20 @@ public class RegisterAction extends ActionSupport {
         this.user = user;
     }
 
+    public void setSession(Map session) {
+        this.session=session;
+    }
+
     public String execute() {
         try {
 
-            userService.regUser(user);
+            User backUser=userService.login(user);
+
+            if(backUser!=null){
+                session.put("userId",backUser.getUserId());
+            }
+
+
             return SUCCESS;
 
         } catch (Exception e) {
@@ -39,5 +55,6 @@ public class RegisterAction extends ActionSupport {
             return ERROR;
         }
     }
+
 
 }

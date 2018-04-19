@@ -5,11 +5,25 @@
 
 <struts>
 
+    
     <package name="default" extends="struts-default">
         <action name="register" class="action.RegisterAction">
             <result name="input">/Register.jsp</result>
             <result name="success">/Success.jsp</result>
         </action>
+
+        <action name="tweet" class="action.TweetAction">
+            <result name="success">/Success.jsp</result>
+        </action>
+
+        <action name="renderTweet" class="action.TweetAction" method="findAllGoods">
+            <result name="success">Tweet.jsp</result>
+        </action>
+
+        <action name="login" class="action.LoginAction">
+            <result name="success">/RenderTweet.jsp</result>
+        </action>
     </package>
+
 
 </struts>

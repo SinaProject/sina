@@ -26,6 +26,8 @@ public interface UserDao {
 
      //获取所有用户
 
+     List<User> getAllUser() throws HibernateException;
+
      //获取
 
 }

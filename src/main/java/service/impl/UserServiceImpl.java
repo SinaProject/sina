@@ -9,18 +9,33 @@ import org.springframework.transaction.annotation.Transactional;
 import service.UserService;
 import utils.UserForm;
 
+import java.util.List;
+
 @Service
 @Transactional
 public class UserServiceImpl implements UserService{
 
     @Autowired
-    private UserDao dao;
+    private UserDao userDao;
 
     public void regUser(UserForm userForm) throws HibernateException {
         User user = new User();
         user.setUserName(userForm.getUsername());
         user.setPassword(userForm.getPassword());
-        dao.saveObject(user);
+        userDao.saveObject(user);
+
     }
 
+
+    public User login(UserForm userForm) throws HibernateException {
+
+        List<User> userList = userDao.getAllUser();
+        for(User user:userList){
+            if(user.getUserName().equals(userForm.getUsername())
+                    &&user.getPassword().equals(userForm.getPassword())){
+                return user;
+            }
+        }
+        return null;
+    }
 }

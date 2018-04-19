@@ -2,7 +2,6 @@ package dao;
 
 import entity.Msg;
 
-import java.io.Serializable;
 import java.util.List;
 
 public interface MsgDao {
@@ -24,7 +23,9 @@ public interface MsgDao {
      * @return
      */
 
-    List<Msg> getAllTweetsForUser(int userId);
+    List getAllTweetsForUser(int userId);
+
+    List<Msg> getAllTweets();
 
     //增加微博
 
