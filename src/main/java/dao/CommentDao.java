@@ -11,7 +11,7 @@ import java.util.List;
  */
 public interface CommentDao {
 
-    public void addComment(Comment comment);
+    public Comment addComment(Comment comment);
 
     public void deleteComment(int commentId);
 

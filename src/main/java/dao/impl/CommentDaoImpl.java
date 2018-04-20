@@ -31,8 +31,8 @@ public class CommentDaoImpl implements CommentDao {
      *@返回值  
     
      */
-    public void addComment(Comment comment) {
-        sessionFactory.getCurrentSession().save(comment);
+    public Comment addComment(Comment comment) {
+        return (Comment) sessionFactory.getCurrentSession().save(comment);
     }
     
     /**

@@ -35,14 +35,14 @@
             <td><s:property value="#tweet.getUserId()" />
             </td>
             <td>
-                <s:submit action="" value="评论"/>
+                <a href="Comment.jsp?msgId=<s:property value='#tweet.getMsgId()'/>">评论</a>
             </td>
-            <td>
-                <s:submit action="" value="转发"/>
-            </td>
-            <td>
-                <s:submit action="" value="点赞"/>
-            </td>
+            <%--<td>--%>
+                <%--<s:submit action="" value="转发"/>--%>
+            <%--</td>--%>
+            <%--<td>--%>
+                <%--<s:submit action="" value="点赞"/>--%>
+            <%--</td>--%>
 
         </tr>
     </s:iterator>
