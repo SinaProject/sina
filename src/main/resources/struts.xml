@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE struts PUBLIC
         "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
-        "http://struts.apache.org/dtds/struts-2.3.dtd">
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
 
 <struts>
 
-    
+
+
     <package name="default" extends="struts-default">
         <action name="register" class="action.RegisterAction">
             <result name="input">/Register.jsp</result>
             <result name="success">/Success.jsp</result>
         </action>
 
-        <action name="tweet" class="action.TweetAction">
+        <action name="tweet" class="action.TweetAction" method="execute">
             <result name="success">/Success.jsp</result>
         </action>
 
@@ -22,6 +24,17 @@
 
         <action name="login" class="action.LoginAction">
             <result name="success">/RenderTweet.jsp</result>
+        </action>
+
+        <action name="comment" class="action.CommentAction">
+            <result name = "success">/RenderTweet.jsp</result>
+        </action>
+    </package>
+
+    <package name="ajax" extends="json-default">
+        <action name="jsonAjax" class="action.TweetAction">
+            <!-- 将返回类型设置为json -->
+            <result type="json"/>
         </action>
     </package>
 

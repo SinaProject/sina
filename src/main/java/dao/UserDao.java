@@ -18,7 +18,7 @@ public interface UserDao {
 
      
 
-     void saveObject(User user) throws HibernateException ;
+     Object saveObject(User user) throws HibernateException ;
 
      User getUser(Serializable id) throws HibernateException;
 

@@ -8,7 +8,7 @@ package utils;
 public class CommentForm {
 
     private int msgId;
-    private String content;
+    private String commentContent;
 
     public int getMsgId() {
         return msgId;
@@ -18,11 +18,11 @@ public class CommentForm {
         this.msgId = msgId;
     }
 
-    public String getContent() {
-        return content;
+    public String getCommentContent() {
+        return commentContent;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setCommentContent(String commentContent) {
+        this.commentContent = commentContent;
     }
 }

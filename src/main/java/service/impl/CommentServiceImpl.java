@@ -20,7 +20,7 @@ public class CommentServiceImpl implements CommentService {
     @Autowired
     CommentDao commentDao;
 
-    public Comment addComment(CommentForm commentForm, int userId) {
+    public Object addComment(CommentForm commentForm, int userId) {
         Comment comment = new Comment();
         BeanUtils.copyProperties(commentForm,comment);
         comment.setUserId(userId);

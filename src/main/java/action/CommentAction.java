@@ -1,11 +1,15 @@
 package action;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.SessionAware;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import service.CommentService;
 import utils.CommentForm;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 /**
@@ -36,11 +40,12 @@ public class CommentAction extends ActionSupport implements SessionAware {
 
     @Override
     public String execute() throws Exception {
-
+        HttpServletRequest request=ServletActionContext.getRequest();
         int userId = (Integer) session.get("userId");
-        commentService.addComment(commentForm,userId);
-
-        return SUCCESS;
+        if(commentService.addComment(commentForm,userId)!=null){
+            return SUCCESS;
+        }
+       return ERROR;
     }
 
 

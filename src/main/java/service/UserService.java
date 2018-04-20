@@ -12,7 +12,7 @@ public interface UserService {
 
 
 
-    void regUser(UserForm userForm) throws HibernateException;
+    Object regUser(UserForm userForm) throws HibernateException;
 
     User login(UserForm userForm) throws HibernateException;
 

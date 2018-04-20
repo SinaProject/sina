@@ -11,11 +11,14 @@ public class MsgForm {
 
 
     private String msgContent;
-    private Integer msgCollectNum;
-    private Integer msgForward;
-    private Integer msgReplyNum;
-    private Integer msgZanNum;
+
+    private String msgIsForward;
+
+    private int forwardId;
+
     private int userId;
+
+    private int msgId;
 
 
     public String getMsgContent() {
@@ -34,35 +37,27 @@ public class MsgForm {
         this.userId = userId;
     }
 
-    public Integer getMsgCollectNum() {
-        return msgCollectNum;
+    public int getForwardId() {
+        return forwardId;
     }
 
-    public void setMsgCollectNum(Integer msgCollectNum) {
-        this.msgCollectNum = msgCollectNum;
+    public void setForwardId(int forwardId) {
+        this.forwardId = forwardId;
     }
 
-    public Integer getMsgForward() {
-        return msgForward;
+    public String getMsgIsForward() {
+        return msgIsForward;
     }
 
-    public void setMsgForward(Integer msgForward) {
-        this.msgForward = msgForward;
+    public void setMsgIsForward(String msgIsForward) {
+        this.msgIsForward = msgIsForward;
     }
 
-    public Integer getMsgReplyNum() {
-        return msgReplyNum;
+    public int getMsgId() {
+        return msgId;
     }
 
-    public void setMsgReplyNum(Integer msgReplyNum) {
-        this.msgReplyNum = msgReplyNum;
-    }
-
-    public Integer getMsgZanNum() {
-        return msgZanNum;
-    }
-
-    public void setMsgZanNum(Integer msgZanNum) {
-        this.msgZanNum = msgZanNum;
+    public void setMsgId(int msgId) {
+        this.msgId = msgId;
     }
 }

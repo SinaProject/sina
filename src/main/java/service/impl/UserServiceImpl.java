@@ -18,11 +18,11 @@ public class UserServiceImpl implements UserService{
     @Autowired
     private UserDao userDao;
 
-    public void regUser(UserForm userForm) throws HibernateException {
+    public Object regUser(UserForm userForm) throws HibernateException {
         User user = new User();
         user.setUserName(userForm.getUsername());
         user.setPassword(userForm.getPassword());
-        userDao.saveObject(user);
+        return userDao.saveObject(user);
 
     }
 

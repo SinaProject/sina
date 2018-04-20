@@ -8,6 +8,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://cdn.w3schools.wang/w3.css">
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -16,12 +18,21 @@
 </head>
 <body>
 
-<s:form action="login">
-    <s:textfield name="user.username" label="用户名"/>
-    <s:password name="user.password" label="密码"/>
-    <s:submit value="登陆"/>
-</s:form>
-
+<div class="w3-container w3-half w3-margin-top">
+    <form action="login" class="w3-container w3-card-4">
+        <p>
+            <label>用户名</label>
+            <input type="text" name="user.username"  class="w3-input" style="width:90%" required="true"/>
+        </p>
+        <p>
+            <label>密码</label>
+            <input type="password" name="user.password" l class="w3-input" style="width:90%" required="true"/>
+        </p>
+        <p>
+            <button type="submit" class="w3-btn w3-section w3-teal w3-ripple">登陆</button>
+        </p>
+    </form>
+</div>
 </body>
 </html>
 

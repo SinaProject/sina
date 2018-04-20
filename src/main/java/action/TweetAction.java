@@ -49,6 +49,7 @@ public class TweetAction extends ActionSupport implements SessionAware {
         try {
 
             msgService.addTweet(msg,(Integer) session.get("userId"));
+
             return SUCCESS;
 
         } catch (Exception e) {

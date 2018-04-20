@@ -10,6 +10,9 @@
 <html>
 <head>
     <title>Welcome Tweet</title>
+
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
+
 </head>
 <body>
 
@@ -37,9 +40,9 @@
             <td>
                 <a href="Comment.jsp?msgId=<s:property value='#tweet.getMsgId()'/>">评论</a>
             </td>
-            <%--<td>--%>
-                <%--<s:submit action="" value="转发"/>--%>
-            <%--</td>--%>
+            <td>
+                <a href="Forward.jsp?msgContent=<s:property value='#tweet.getMsgContent()'/>&msgId=<s:property value='#tweet.getMsgId()'/>">转发</a>
+            </td>
             <%--<td>--%>
                 <%--<s:submit action="" value="点赞"/>--%>
             <%--</td>--%>

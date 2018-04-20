@@ -31,8 +31,10 @@ public class RegisterAction extends ActionSupport {
     public String execute() {
         try {
 
-            userService.regUser(user);
-            return SUCCESS;
+            if(userService.regUser(user)!=null){
+                return SUCCESS;
+            }
+            return ERROR;
 
         } catch (Exception e) {
             e.printStackTrace();

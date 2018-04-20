@@ -10,6 +10,6 @@ import utils.CommentForm;
  */
 public interface CommentService {
 
-    public Comment addComment(CommentForm commentForm, int userId);
+    public Object addComment(CommentForm commentForm, int userId);
 
 }

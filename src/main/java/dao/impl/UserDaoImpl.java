@@ -30,8 +30,8 @@ public class UserDaoImpl implements UserDao{
      *@返回值
 
      */
-    public void saveObject(User user) throws HibernateException {
-        sessionFactory.getCurrentSession().save(user);
+    public Object saveObject(User user) throws HibernateException {
+        return sessionFactory.getCurrentSession().save(user);
         
     }
 
