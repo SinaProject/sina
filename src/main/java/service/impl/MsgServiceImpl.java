@@ -3,10 +3,8 @@ package service.impl;
 import dao.MsgDao;
 import dao.UserDao;
 import entity.Msg;
-import entity.User;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import service.MsgService;
@@ -33,7 +31,7 @@ public class MsgServiceImpl implements MsgService {
 
 
     @Transactional
-    public void addTweet(MsgForm msgForm,int userId) {
+    public void addTweet(MsgForm msgForm) {
 
         Msg msg = new Msg();
         BeanUtils.copyProperties(msgForm,msg);
@@ -44,7 +42,8 @@ public class MsgServiceImpl implements MsgService {
             }
             msg.setMsgForward(currentForwardNum+1);
         }
-        msg.setUserId(userId);
+        msg.setUserId(msgForm.getUserId());
+        msg.setUserName(userDao.getUser(msg.getUserId()).getUserName());
         msgDao.addTweet(msg);
     }
 

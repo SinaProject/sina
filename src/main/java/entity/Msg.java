@@ -18,6 +18,7 @@ public class Msg {
     private Integer msgForwardId;
     private String masgLink;
     private Integer msgZanNum;
+    private String userName;
     private int userId;
 
     @Id
@@ -42,7 +43,7 @@ public class Msg {
     }
 
     @Basic
-    @Column(name = "msgCollectNum", nullable = true,updatable = false,insertable = false)
+    @Column(name = "msgCollectNum", nullable = true, updatable = false, insertable = false)
     public Integer getMsgCollectNum() {
         return msgCollectNum;
     }
@@ -122,7 +123,18 @@ public class Msg {
     }
 
     @Basic
-    @Column(name = "userID", nullable = false)
+    @Column(name = "userName", nullable = false)
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+
+    @Basic
+    @Column(name = "userId", nullable = false)
     public int getUserId() {
         return userId;
     }
@@ -149,8 +161,7 @@ public class Msg {
         if (msgForwardId != null ? !msgForwardId.equals(msg.msgForwardId) : msg.msgForwardId != null) return false;
         if (masgLink != null ? !masgLink.equals(msg.masgLink) : msg.masgLink != null) return false;
         if (msgZanNum != null ? !msgZanNum.equals(msg.msgZanNum) : msg.msgZanNum != null) return false;
-
-        return true;
+        return userName != null ? userName.equals(msg.userName) : msg.userName == null;
     }
 
     @Override
@@ -165,6 +176,7 @@ public class Msg {
         result = 31 * result + (msgForwardId != null ? msgForwardId.hashCode() : 0);
         result = 31 * result + (masgLink != null ? masgLink.hashCode() : 0);
         result = 31 * result + (msgZanNum != null ? msgZanNum.hashCode() : 0);
+        result = 31 * result + (userName != null ? userName.hashCode() : 0);
         result = 31 * result + userId;
         return result;
     }
@@ -182,7 +194,9 @@ public class Msg {
                 ", msgForwardId=" + msgForwardId +
                 ", masgLink='" + masgLink + '\'' +
                 ", msgZanNum=" + msgZanNum +
-                ", userId=" + userId +
+                ", userId=" + userName +
                 '}';
     }
+
+
 }

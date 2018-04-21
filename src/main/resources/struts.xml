@@ -23,18 +23,20 @@
         </action>
 
         <action name="login" class="action.LoginAction">
-            <result name="success">/RenderTweet.jsp</result>
+            <result name="success">/Tweet.jsp</result>
         </action>
 
         <action name="comment" class="action.CommentAction">
-            <result name = "success">/RenderTweet.jsp</result>
+            <result name = "success">/Tweet.jsp</result>
         </action>
     </package>
 
-    <package name="ajax" extends="json-default">
-        <action name="jsonAjax" class="action.TweetAction">
+    <package name="ajax" namespace="/json" extends="json-default">
+        <action name="Tweets" class="action.TweetAction" method="findAllGoods">
             <!-- 将返回类型设置为json -->
-            <result type="json"/>
+            <result name="success" type="json">
+                <param name="root">msgList</param>
+            </result>
         </action>
     </package>
 

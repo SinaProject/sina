@@ -3,14 +3,11 @@ package dao;
 import entity.Msg;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 /**
  * @anthor tanshangou
@@ -30,7 +27,8 @@ public class MsgDaoTest {
     public void addTweet() {
         Msg msg=new Msg();
         msg.setMsgContent("test2");
-        msg.setUserId(1);
+        msg.setUserName("windpine");
+        msg.setUserId(4);
 
         msgDao.addTweet(msg);
     }
@@ -43,7 +41,7 @@ public class MsgDaoTest {
     @Test
     public void getAllTweetsForUser() {
 
-        List<Msg> msgList=msgDao.getAllTweetsForUser(1);
+        List<Msg> msgList=msgDao.getAllTweetsForUser(4);
         for(Msg msg:msgList){
             System.out.println(msg.toString());
         }

@@ -30,7 +30,7 @@ public class ForwardAction extends ActionSupport implements SessionAware {
     @Override
     public String execute() throws Exception {
 
-        msgService.addTweet(msgForm,(Integer) session.get("userId"));
+        msgService.addTweet(msgForm);
         return SUCCESS;
     }
 

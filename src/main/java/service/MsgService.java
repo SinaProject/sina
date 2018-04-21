@@ -15,7 +15,7 @@ public interface MsgService {
 
 
     //
-    public void addTweet(MsgForm msgForm,int userId);
+    public void addTweet(MsgForm msgForm);
 
     //
     public List<Msg> getAllTweet();

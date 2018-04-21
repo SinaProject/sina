@@ -27,6 +27,9 @@ public class MsgServiceTest {
 
         MsgForm msgForm = new MsgForm();
         msgForm.setMsgContent("hi");
+        msgForm.setUserId(1);
+        msgForm.setMsgIsForward("N");
+        msgService.addTweet(msgForm);
 
     }
 }

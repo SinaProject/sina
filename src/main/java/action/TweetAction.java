@@ -1,12 +1,20 @@
 package action;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.ModelDriven;
 import entity.Msg;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.SessionAware;
+import org.apache.struts2.json.annotations.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import service.MsgService;
 import utils.MsgForm;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -15,7 +23,7 @@ import java.util.Map;
  * @time 2018/4/17
  * @description
  */
-public class TweetAction extends ActionSupport implements SessionAware {
+public class TweetAction extends ActionSupport implements SessionAware{
 
     private MsgForm msg;
     private List<Msg> msgList;
@@ -28,6 +36,7 @@ public class TweetAction extends ActionSupport implements SessionAware {
     public void setSession(Map session) {
         this.session=session;
     }
+
 
     public MsgForm getMsg() {
         return msg;
@@ -42,13 +51,13 @@ public class TweetAction extends ActionSupport implements SessionAware {
     }
 
     public void setMsgList(List<Msg> msgList) {
-        this.msgList=msgList;
+        this.msgList = msgList;
     }
 
     public String execute() {
         try {
 
-            msgService.addTweet(msg,(Integer) session.get("userId"));
+            msgService.addTweet(msg);
 
             return SUCCESS;
 
@@ -58,11 +67,15 @@ public class TweetAction extends ActionSupport implements SessionAware {
         }
     }
 
-    public String findAllGoods(){
+    public String findAllGoods() throws IOException {
+
         this.msgList=msgService.getAllTweet();
 
-        return "success";
+        return SUCCESS;
     }
+
+
+
 
     //TODO 评论转发点赞操作
 
