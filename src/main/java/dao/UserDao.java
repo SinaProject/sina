@@ -18,13 +18,15 @@ public interface UserDao {
 
      
 
-     void saveObject(User user) throws HibernateException ;
+     Object saveObject(User user) throws HibernateException ;
 
      User getUser(Serializable id) throws HibernateException;
 
      void deleteUser(Serializable id) throws HibernateException;
 
      //获取所有用户
+
+     List<User> getAllUser() throws HibernateException;
 
      //获取
 

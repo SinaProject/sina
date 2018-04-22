@@ -15,6 +15,7 @@ public class User {
     private Date userBirth;
     private String userInfo;
     private String bkImage;
+    private String userRole;
 
     @Id
     @GeneratedValue
@@ -49,7 +50,7 @@ public class User {
     }
 
     @Basic
-    @Column(name = "password", nullable = false, length = 30)
+    @Column(name = "password", nullable = false, length = 32)
     public String getPassword() {
         return password;
     }
@@ -118,6 +119,17 @@ public class User {
         this.bkImage = bkImage;
     }
 
+
+    @Basic
+    @Column(name = "userRole", nullable = false, length = 16)
+    public String getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(String userRole) {
+        this.userRole = userRole;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -154,4 +166,24 @@ public class User {
         result = 31 * result + (bkImage != null ? bkImage.hashCode() : 0);
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", userName='" + userName + '\'' +
+                ", userPicture='" + userPicture + '\'' +
+                ", password='" + password + '\'' +
+                ", sex='" + sex + '\'' +
+                ", userPhone='" + userPhone + '\'' +
+                ", userBlogAddress='" + userBlogAddress + '\'' +
+                ", userBirth=" + userBirth +
+                ", userInfo='" + userInfo + '\'' +
+                ", bkImage='" + bkImage + '\'' +
+                '}';
+    }
+
+
+
+
 }

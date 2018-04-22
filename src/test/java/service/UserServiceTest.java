@@ -1,5 +1,6 @@
 package service;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,5 +24,13 @@ public class UserServiceTest {
         user.setUsername("windpine");
         user.setPassword("23333");
         userService.regUser(user);
+    }
+
+    @Test
+    public void loginTest(){
+        UserForm user = new UserForm();
+        user.setUsername("windpine");
+        user.setPassword("23333");
+        Assert.assertNotNull(userService.login(user));
     }
 }
