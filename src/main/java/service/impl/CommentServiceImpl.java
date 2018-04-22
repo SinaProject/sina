@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import service.CommentService;
 import utils.CommentForm;
 
+import java.util.List;
+
 /**
  * @anthor tanshangou
  * @time 2018/4/20
@@ -25,5 +27,10 @@ public class CommentServiceImpl implements CommentService {
         BeanUtils.copyProperties(commentForm,comment);
         comment.setUserId(commentForm.getUserId());
         return commentDao.addComment(comment);
+    }
+
+
+    public List<Comment> getAllComments(int msgId) {
+        return commentDao.getAllCommentByTweet(msgId);
     }
 }

@@ -34,6 +34,13 @@
                 <param name="root">msgList</param>
             </result>
         </action>
+
+        <action name="Comments" class="action.CommentAction" method="findAllCommments">
+            <!-- 将返回类型设置为json -->
+            <result name="success" type="json">
+                <param name="root">commentList</param>
+            </result>
+        </action>
     </package>
 
 

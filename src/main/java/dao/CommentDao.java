@@ -15,5 +15,5 @@ public interface CommentDao {
 
     public void deleteComment(int commentId);
 
-    public List getAllCommentByTweet(int msgId);
+    public List<Comment> getAllCommentByTweet(int msgId);
 }

@@ -2,6 +2,7 @@ package action;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import entity.Comment;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.SessionAware;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,8 @@ import service.CommentService;
 import utils.CommentForm;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -23,6 +26,8 @@ public class CommentAction extends ActionSupport implements SessionAware {
     CommentService commentService;
 
     private CommentForm commentForm;
+    private List<Comment> commentList;
+    private int msgId;
 
     private Map session;
 
@@ -38,12 +43,37 @@ public class CommentAction extends ActionSupport implements SessionAware {
         this.commentForm = commentForm;
     }
 
-    @Override
+    public List<Comment> getCommentList() {
+        return commentList;
+    }
+
+    public void setCommentList(List<Comment> commentList) {
+        this.commentList = commentList;
+    }
+
+    public int getMsgId() {
+        return msgId;
+    }
+
+    public void setMsgId(int msgId) {
+        this.msgId = msgId;
+    }
+
     public String execute() throws Exception {
         if(commentService.addComment(commentForm)!=null){
             return SUCCESS;
         }
        return ERROR;
+    }
+
+
+
+    public String findAllCommments() throws Exception {
+
+
+        commentList=commentService.getAllComments(msgId);
+
+        return SUCCESS;
     }
 
 

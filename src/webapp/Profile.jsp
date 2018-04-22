@@ -226,10 +226,12 @@
                             <label id="comment-content"><b>请输入评论内容</b></label>
                             <form id="comment-form" action="comment.action">
                                 <input id="_userid" type="hidden" name="commentForm.userId" value="<%=session.getAttribute("userId")%>"/>
-                                <input id="commentid" type="hidden" name="commentForm.commentId"/>
+                                <input id="msgid" type="hidden" name="commentForm.msgId"/>
                                 <input class="w3-input w3-border w3-hover-border-black w3-margin-bottom" type="text" name="comment.commentContent">
-                                <button id="comment-test" type="submit" class="w3-btn w3-btn-block w3-green w3-section">评论</button>
+                                <button id="comment" type="submit" class="w3-btn w3-btn-block w3-green w3-section">评论</button>
                             </form>
+                        </div>
+                        <div id="comment-list" style="padding: 5px">
 
                         </div>
                     </div>
@@ -326,6 +328,7 @@
 
     //获取微博内容
     $(document).ready(function () {
+
         var url = "/json/Tweets.action";
         $.ajax({
             type: 'get',
@@ -352,7 +355,7 @@
                         "                </div>\n" +
                         "                <!--点赞按钮和评论按钮-->\n" +
                         "                <button type=\"button\" class=\"w3-btn w3-theme-d1 w3-margin-bottom\"><i class=\"fa fa-thumbs-up\"></i>点赞</button>\n" +
-                            "            <button type=\"button\" onclick=\"document.getElementById('id02').style.display='block';commentButton("+list.msgId+")\" class=\"w3-btn w3-theme-d1 w3-margin-bottom\"><i class=\"fa fa-comment\"></i>评论</button>\n" +
+                            "            <button id=\"to-comment\" type=\"button\" onclick=\"document.getElementById('id02').style.display='block';commentButton("+list.msgId+")\" class=\"w3-btn w3-theme-d1 w3-margin-bottom\"><i class=\"fa fa-comment\"></i>评论</button>\n" +
                         "                <button type=\"button\" onclick=\"document.getElementById('id01').style.display='block';forwardButton("+list.msgId+")\" class=\"w3-btn w3-theme-d2 w3-margin-bottom\"><i class=\"fa fa-comment\"></i>转发</button>\n" +
                         "            </div>");
                     $("#middle-column").append(card);
@@ -361,12 +364,32 @@
         })
     })
 
+    $("div#middle-column").delegate("button","click",function(){
+
+        var url = "/json/Comments.action";
+        var msgId = document.getElementById("msgid").value;
+        $.ajax({
+            url: url,
+            type: 'get',
+            data: {"msgId":msgId},
+            dataType: 'json',
+            success: function (data) {
+                $.each(data, function (i,list) {
+                    var commentcard = $("<div class=\"w3-card\">\n" +
+                        "                                <p>"+list.commentContent+"</p>\n" +
+                        "                            </div>");
+                    $("#comment-list").append(commentcard);
+                })
+            }
+        })
+
+    });
 
     function forwardButton(msgId) {
         document.getElementById("forwardid").value=msgId;
     }
     function commentButton(msgId) {
-        document.getElementById("commentid").value=msgId;
+        document.getElementById("msgid").value=msgId;
     }
 
     function likeButton(msgId){

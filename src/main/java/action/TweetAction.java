@@ -70,7 +70,6 @@ public class TweetAction extends ActionSupport implements SessionAware{
     public String findAllGoods() throws IOException {
 
         this.msgList=msgService.getAllTweet();
-
         return SUCCESS;
     }
 
