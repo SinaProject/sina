@@ -6,28 +6,24 @@
 
 <struts>
 
-
+    <constant name="struts.i18n.encoding" value="UTF-8" />
 
     <package name="default" extends="struts-default">
         <action name="register" class="action.RegisterAction">
             <result name="input">/Register.jsp</result>
-            <result name="success">/Success.jsp</result>
+            <result name="success">/Login.jsp</result>
         </action>
 
         <action name="tweet" class="action.TweetAction" method="execute">
-            <result name="success">/Success.jsp</result>
-        </action>
-
-        <action name="renderTweet" class="action.TweetAction" method="findAllGoods">
-            <result name="success">Tweet.jsp</result>
+            <result name="success">/Profile.jsp</result>
         </action>
 
         <action name="login" class="action.LoginAction">
-            <result name="success">/Tweet.jsp</result>
+            <result name="success">/Profile.jsp</result>
         </action>
 
         <action name="comment" class="action.CommentAction">
-            <result name = "success">/Tweet.jsp</result>
+            <result name = "success">/Profile.jsp</result>
         </action>
     </package>
 

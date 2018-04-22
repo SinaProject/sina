@@ -22,6 +22,7 @@ public class UserServiceImpl implements UserService{
         User user = new User();
         user.setUserName(userForm.getUsername());
         user.setPassword(userForm.getPassword());
+        user.setUserRole("user");
         return userDao.saveObject(user);
 
     }

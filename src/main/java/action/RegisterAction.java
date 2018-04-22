@@ -41,5 +41,4 @@ public class RegisterAction extends ActionSupport {
             return ERROR;
         }
     }
-
 }

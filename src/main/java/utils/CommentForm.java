@@ -9,6 +9,7 @@ public class CommentForm {
 
     private int msgId;
     private String commentContent;
+    private int userId;
 
     public int getMsgId() {
         return msgId;
@@ -24,5 +25,13 @@ public class CommentForm {
 
     public void setCommentContent(String commentContent) {
         this.commentContent = commentContent;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 }

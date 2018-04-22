@@ -45,7 +45,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
 
             if(backUser!=null){
                 session.put("userId",backUser.getUserId());
-            }
+            }else return ERROR;
 
 
             return SUCCESS;

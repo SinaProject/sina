@@ -15,7 +15,7 @@
             <column name="userPicture" sql-type="varchar(100)" length="100" not-null="true"/>
         </property>
         <property name="password">
-            <column name="password" sql-type="varchar(30)" length="30"/>
+            <column name="password" sql-type="varchar(32)" length="32"/>
         </property>
         <property name="sex">
             <column name="sex" sql-type="char(2)" length="2" not-null="true"/>
@@ -34,6 +34,9 @@
         </property>
         <property name="bkImage">
             <column name="bkImage" sql-type="varchar(100)" length="100" not-null="true"/>
+        </property>
+        <property name="userRole">
+            <column name="userRole" sql-type="varchar(16)" length="15" not-null="true"/>
         </property>
     </class>
 </hibernate-mapping>

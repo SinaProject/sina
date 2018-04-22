@@ -36,7 +36,7 @@ public class MsgServiceImpl implements MsgService {
         Msg msg = new Msg();
         BeanUtils.copyProperties(msgForm,msg);
         if(msg.getMsgIsForward().equals("Y")){
-            Integer currentForwardNum = msgDao.getTweet(msgForm.getMsgId()).getMsgForward();
+            Integer currentForwardNum = msgDao.getTweet(msgForm.getForwardId()).getMsgForward();
             if(currentForwardNum==null){
                 currentForwardNum=1;
             }
@@ -46,7 +46,6 @@ public class MsgServiceImpl implements MsgService {
         msg.setUserName(userDao.getUser(msg.getUserId()).getUserName());
         msgDao.addTweet(msg);
     }
-
     public List<Msg> getAllTweet() {
         return msgDao.getAllTweets();
     }

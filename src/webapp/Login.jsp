@@ -15,24 +15,38 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>User Register Page</title>
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
+    <script type="text/javascript" src="md5.js"></script>
 </head>
 <body>
 
 <div class="w3-container w3-half w3-margin-top">
-    <form action="login" class="w3-container w3-card-4">
+    <form id="login-form" action="login.action" class="w3-container w3-card-4">
         <p>
             <label>用户名</label>
             <input type="text" name="user.username"  class="w3-input" style="width:90%" required="true"/>
         </p>
         <p>
             <label>密码</label>
-            <input type="password" name="user.password" l class="w3-input" style="width:90%" required="true"/>
+            <input id="pwd" type="password" name="user.password"  class="w3-input" style="width:90%" required="true"/>
         </p>
         <p>
-            <button type="submit" class="w3-btn w3-section w3-teal w3-ripple">登陆</button>
+            <button type="submit" onclick="md5()" class="w3-btn w3-section w3-teal w3-ripple">登陆</button>
         </p>
+        <span class="w3-right w3-padding w3-hide-small">
+            <a href="/Register.jsp">没有账户？</a>
+        </span>
     </form>
+
+
 </div>
+
+<script>
+    function md5(){
+        var hash=hex_md5(document.getElementById("pwd").value);
+        document.getElementById("pwd").value=hash;
+    }
+</script>
 </body>
 </html>
 

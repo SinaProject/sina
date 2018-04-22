@@ -40,9 +40,7 @@ public class CommentAction extends ActionSupport implements SessionAware {
 
     @Override
     public String execute() throws Exception {
-        HttpServletRequest request=ServletActionContext.getRequest();
-        int userId = (Integer) session.get("userId");
-        if(commentService.addComment(commentForm,userId)!=null){
+        if(commentService.addComment(commentForm)!=null){
             return SUCCESS;
         }
        return ERROR;
