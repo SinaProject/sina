@@ -41,6 +41,16 @@
                 <param name="root">commentList</param>
             </result>
         </action>
+
+        <action name="register-validation" class="action.RegisterAction" method="validation">
+
+            <!-- 返回类型为json 在sjon-default中定义 -->
+            <result type="json">
+                <!-- root的值对应要返回的值的属性 -->
+                <!-- 这里的result值即是对应action中的 result -->
+                <param name="root">result</param>
+            </result>
+        </action>
     </package>
 
 

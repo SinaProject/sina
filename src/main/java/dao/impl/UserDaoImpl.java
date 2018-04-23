@@ -79,4 +79,11 @@ public class UserDaoImpl implements UserDao{
         return query.list();
 
     }
+
+    public User getUser(String username) throws HibernateException {
+        String hql="FROM User e WHERE e.userName=?";
+        Query query=sessionFactory.getCurrentSession().createQuery(hql);
+        query.setParameter(0,username);
+        return (User)query.list().get(0);
+    }
 }

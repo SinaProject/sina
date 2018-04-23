@@ -16,4 +16,6 @@ public interface UserService {
 
     User login(UserForm userForm) throws HibernateException;
 
+    Boolean isUsernameExists(String username) throws HibernateException;
+
 }

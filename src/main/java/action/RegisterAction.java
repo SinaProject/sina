@@ -3,10 +3,12 @@ package action;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import service.UserService;
 import utils.UserForm;
 
+import java.util.HashMap;
 import java.util.Map;
 
 
@@ -16,6 +18,8 @@ public class RegisterAction extends ActionSupport {
 
 
     private UserForm user;
+
+    private String result;
 
     @Autowired
     private UserService userService;
@@ -40,5 +44,20 @@ public class RegisterAction extends ActionSupport {
             e.printStackTrace();
             return ERROR;
         }
+    }
+
+    public String validation(){
+
+
+        String name = user.getUsername();
+
+        if(userService.isUsernameExists(user.getUsername())){
+            this.result = "yes";
+
+        }else {
+           this.result="no";
+        }
+
+        return SUCCESS;
     }
 }
