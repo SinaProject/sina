@@ -22,19 +22,14 @@ public class UserDaoImpl implements UserDao{
 
 
     /**
-
      *@描述 保存用户
-
      *@参数
-
      *@返回值
-
      */
     public Object saveObject(User user) throws HibernateException {
         return sessionFactory.getCurrentSession().save(user);
         
     }
-
     /**
 
      *@描述 获取单个用户

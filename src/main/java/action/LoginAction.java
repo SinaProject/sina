@@ -20,7 +20,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
 
 
     private UserForm user;
-
+    private boolean isAdmin;
     private Map session;
 
     @Autowired
@@ -40,9 +40,11 @@ public class LoginAction extends ActionSupport implements SessionAware {
 
     public String execute() {
         try {
-
+        	if(isAdmin){
+        		
+        	}
             User backUser=userService.login(user);
-
+            
             if(backUser!=null){
                 session.put("userId",backUser.getUserId());
             }else return ERROR;
