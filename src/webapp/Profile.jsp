@@ -368,7 +368,7 @@
                         "                <button id=\"to-like-"+list.msgId+"\" msgId=\""+list.msgId+"\" type=\"button\" class=\"w3-btn w3-theme-d1 w3-margin-bottom\"><i class=\"fa fa-thumbs-up\"></i>点赞</button>\n" +
                             "            <button id=\"to-comment\" type=\"button\" onclick=\"document.getElementById('id02').style.display='block';commentButton("+list.msgId+")\" class=\"w3-btn w3-theme-d1 w3-margin-bottom\"><i class=\"fa fa-comment\"></i>评论</button>\n" +
                         "                <button type=\"button\" onclick=\"document.getElementById('id01').style.display='block';forwardButton("+list.msgId+")\" class=\"w3-btn w3-theme-d2 w3-margin-bottom\"><i class=\"fa fa-comment\"></i>转发</button>\n"+
-                        "                <button msgId=\""+list.msgId+"\" id=\"to-collect\" type=\"button\" class=\"w3-btn w3-theme-d2 w3-margin-bottom w3-padding-right\"><i class=\"fa fa-star\"></i>收藏</button>\n"+
+                        "                <button id=\"to-collect-"+list.msgId+"\"  msgId=\""+list.msgId+"\" type=\"button\" class=\"w3-btn w3-theme-d2 w3-margin-bottom w3-padding-right\"><i class=\"fa fa-star\"></i>收藏</button>\n"+
                         "            </div>");
                     $("#middle-column").append(card);
                 })
@@ -408,11 +408,11 @@
 
     //收藏函数调用
 
-    $("div#middle-column").delegate("button#to-collect","click",function(){
+    $("div#middle-column").on("click","button[id^='to-collect-']",function(){
 
 
 
-        var msgId=$("button#to-collect").attr("msgId");
+        var msgId=$(this).attr("msgId");
         alert(msgId);
         var userId=<%=(Integer)session.getAttribute("userId")%>
         var url="/json/collect.action";
@@ -425,14 +425,13 @@
             type:"post",
             dataType:"json",
             success:function(result){
-                //此处有bug暂时不管了
-               // $("button#to-collect").html("已收藏");
+                alert("成功收藏");
             }
         })
 
     });
 
-    
+
 
     $("div#middle-column").on("click","button[id^='to-like-']",function(){
 
