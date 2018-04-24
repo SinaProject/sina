@@ -32,6 +32,7 @@ public class TweetAction extends ActionSupport implements SessionAware{
     MsgService msgService;
 
     private Map session;
+    private String result;
 
     public void setSession(Map session) {
         this.session=session;
@@ -73,10 +74,15 @@ public class TweetAction extends ActionSupport implements SessionAware{
         return SUCCESS;
     }
 
-
-
-
     //TODO 评论转发点赞操作
 
+    public String likeTeet(){
+
+
+        msgService.likeTeet(msg.getMsgId());
+
+
+        return SUCCESS;
+    }
 
 }

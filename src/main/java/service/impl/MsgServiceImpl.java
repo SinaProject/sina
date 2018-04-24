@@ -44,9 +44,14 @@ public class MsgServiceImpl implements MsgService {
         }
         msg.setUserId(msgForm.getUserId());
         msg.setUserName(userDao.getUser(msg.getUserId()).getUserName());
+        msg.setMsgZanNum(0);
         msgDao.addTweet(msg);
     }
     public List<Msg> getAllTweet() {
         return msgDao.getAllTweets();
+    }
+
+    public void likeTeet(int msgId) {
+        msgDao.updateTweetOnLike(msgId);
     }
 }

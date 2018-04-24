@@ -25,6 +25,7 @@
         <action name="comment" class="action.CommentAction">
             <result name = "success">/Profile.jsp</result>
         </action>
+
     </package>
 
     <package name="ajax" namespace="/json" extends="json-default">
@@ -49,6 +50,29 @@
                 <!-- root的值对应要返回的值的属性 -->
                 <!-- 这里的result值即是对应action中的 result -->
                 <param name="root">result</param>
+            </result>
+        </action>
+
+        <action name="Collects" class="action.CollectAction" method="findAllCollects">
+            <result name="success" type="json">
+                <param name="root">collectList</param>
+            </result>
+        </action>
+
+        <action name="collect" class="action.CollectAction" method="execute">
+            <result name="success" type="json">Profile.jsp
+            </result>
+        </action>
+
+        <action name="revertCollect" class="action.CollectAction" method="revertCollect">
+            <result name="success" type="json">
+                Profile.jsp
+            </result>
+        </action>
+
+        <action name="like" class="action.TweetAction" method="likeTeet">
+            <result name="success" type="json">
+                Profile.jsp
             </result>
         </action>
     </package>

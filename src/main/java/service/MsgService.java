@@ -19,4 +19,6 @@ public interface MsgService {
 
     //
     public List<Msg> getAllTweet();
+
+    public void likeTeet(int msgId);
 }

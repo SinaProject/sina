@@ -55,4 +55,9 @@ public class MsgDaoTest {
 
     }
 
+    @Test
+    public void likeTeet(){
+        msgDao.updateTweetOnLike(1);
+    }
+
 }

@@ -3,6 +3,7 @@ package dao.impl;
 import dao.MsgDao;
 import entity.Msg;
 import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -95,19 +96,16 @@ public class MsgDaoImpl implements MsgDao {
 
     }
 
-
-
-
     /**
-     * 变更微博
-     * 具体看业务层
-     * 业务层先get到实例，修改了再调用该函数
+     * 更新点赞数
+     * @param msgId
      */
 
-    public void updateTweet(Msg msg) {
+    public void updateTweetOnLike(int msgId) {
 
-        sessionFactory.getCurrentSession().update(msg);
+        String sql="UPDATE msg SET msgZanNum=msgZanNum+1 WHERE msgId=?";
+        SQLQuery sqlQuery=sessionFactory.getCurrentSession().createSQLQuery(sql);
+        sqlQuery.setParameter(0,msgId);
+        sqlQuery.executeUpdate();
     }
-
-
 }

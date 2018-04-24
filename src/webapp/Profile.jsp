@@ -34,7 +34,7 @@
             <a class="w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);"
                onclick="openNav()"><i class="fa fa-bars"></i></a>
         </li>
-        <li><a href="#" class="w3-padding-large w3-theme-d4"><i class="fa fa-home w3-margin-right"></i>Logo</a></li>
+        <li><a href="#" class="w3-padding-large w3-theme-d4"><i class="fa fa-home w3-margin-right"></i>Tweet</a></li>
         <li class="w3-hide-small"><a href="#" class="w3-padding-large w3-hover-white" title="News"><i
                 class="fa fa-globe"></i></a></li>
         <li class="w3-hide-small"><a href="#" class="w3-padding-large w3-hover-white" title="Account Settings"><i
@@ -337,10 +337,20 @@
             dataType: 'json',
             success: function (data) {
                 $.each(data, function (i, list) {
-                    var card = $("<div class=\"w3-container w3-card-2 w3-white w3-round w3-margin\"><br>\n" +
+                    //以下求时间差（也可以直接显示为发布时间）
+                    var fromCurrentTime = new Date().getTime()-new Date(list.msgDate).getTime();
+                    var days=Math.floor(fromCurrentTime/(24*3600*1000));
+                    //计算出小时数
+                    var leave1=fromCurrentTime%(24*3600*1000);    //计算天数后剩余的毫秒数
+                    var hours=Math.floor(leave1/(3600*1000));
+                    //计算相差分钟数
+                    var leave2=leave1%(3600*1000);        //计算小时数后剩余的毫秒数
+                    var minutes=Math.floor(leave2/(60*1000));
+                    var time = days + "天"+hours+"时"+minutes+"分";
+                    var card = $("<div id=\"msg-"+list.msgId+"\" class=\"w3-container w3-card-2 w3-white w3-round w3-margin\"><br>\n" +
                         "                <!--头像+名字+发表时间-->\n" +
                         "                <img src=\"http://cdn.w3schools.wang/img_avatar2.png\" alt=\"Avatar\" class=\"w3-left w3-circle w3-margin-right\" style=\"width:60px\">\n" +
-                        "                <span class=\"w3-right w3-opacity\">1 min</span>\n" +
+                        "                <span class=\"w3-right w3-opacity\">"+time+"前"+"</span>\n" +
                         "                <h4>" + list.userName + "</h4><br>\n" +
                         "                <hr class=\"w3-clear\">\n" +
                         "\n" +
@@ -355,9 +365,10 @@
                         "                    </div>\n" +
                         "                </div>\n" +
                         "                <!--点赞按钮和评论按钮-->\n" +
-                        "                <button type=\"button\" class=\"w3-btn w3-theme-d1 w3-margin-bottom\"><i class=\"fa fa-thumbs-up\"></i>点赞</button>\n" +
+                        "                <button id=\"to-like-"+list.msgId+"\" msgId=\""+list.msgId+"\" type=\"button\" class=\"w3-btn w3-theme-d1 w3-margin-bottom\"><i class=\"fa fa-thumbs-up\"></i>点赞</button>\n" +
                             "            <button id=\"to-comment\" type=\"button\" onclick=\"document.getElementById('id02').style.display='block';commentButton("+list.msgId+")\" class=\"w3-btn w3-theme-d1 w3-margin-bottom\"><i class=\"fa fa-comment\"></i>评论</button>\n" +
-                        "                <button type=\"button\" onclick=\"document.getElementById('id01').style.display='block';forwardButton("+list.msgId+")\" class=\"w3-btn w3-theme-d2 w3-margin-bottom\"><i class=\"fa fa-comment\"></i>转发</button>\n" +
+                        "                <button type=\"button\" onclick=\"document.getElementById('id01').style.display='block';forwardButton("+list.msgId+")\" class=\"w3-btn w3-theme-d2 w3-margin-bottom\"><i class=\"fa fa-comment\"></i>转发</button>\n"+
+                        "                <button msgId=\""+list.msgId+"\" id=\"to-collect\" type=\"button\" class=\"w3-btn w3-theme-d2 w3-margin-bottom w3-padding-right\"><i class=\"fa fa-star\"></i>收藏</button>\n"+
                         "            </div>");
                     $("#middle-column").append(card);
                 })
@@ -365,8 +376,17 @@
         })
     })
 
-    $("div#middle-column").delegate("button","click",function(){
+    function forwardButton(msgId) {
+        document.getElementById("forwardid").value=msgId;
+    }
+    function commentButton(msgId) {
+        document.getElementById("msgid").value=msgId;
+    }
 
+    //添加评论加载
+    $("div#middle-column").delegate("button#to-comment","click",function(){
+
+        $("div#comment-list").empty();
         var url = "/json/Comments.action";
         var msgId = document.getElementById("msgid").value;
         $.ajax({
@@ -386,32 +406,54 @@
 
     });
 
-    function forwardButton(msgId) {
-        document.getElementById("forwardid").value=msgId;
-    }
-    function commentButton(msgId) {
-        document.getElementById("msgid").value=msgId;
-    }
+    //收藏函数调用
 
-    function likeButton(msgId){
+    $("div#middle-column").delegate("button#to-collect","click",function(){
 
-    }
 
-    //
-    // $("button#forward").click(
-    //     var url="";
-    //     $.ajax({
-    //         type:"POST",
-    //         url:url,
-    //         data:{
-    //
-    //         },
-    //         dataType:"json",
-    //         success:function(){
-    //
-    //         }
-    //     })
-    // );
+
+        var msgId=$("button#to-collect").attr("msgId");
+        alert(msgId);
+        var userId=<%=(Integer)session.getAttribute("userId")%>
+        var url="/json/collect.action";
+
+        //判断微博是否已经收藏
+
+        $.ajax({
+            url:url,
+            data:{"msgId":msgId,"userId":userId},
+            type:"post",
+            dataType:"json",
+            success:function(result){
+                //此处有bug暂时不管了
+               // $("button#to-collect").html("已收藏");
+            }
+        })
+
+    });
+
+    
+
+    $("div#middle-column").on("click","button[id^='to-like-']",function(){
+
+        var msgId=$(this).attr('msgId');
+        alert(msgId);
+        var url="/json/like.action";
+        alert(msgId);
+        $.ajax({
+            url:url,
+            data:{"msg.msgId":msgId},
+            type:"post",
+            dataType:"json",
+            success:function(result){
+                alert("成功点赞");
+
+            }
+        })
+
+
+
+    });
 
 
 </script>
