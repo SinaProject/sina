@@ -1,6 +1,7 @@
 package service.impl;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,11 +19,11 @@ public class HotPointServiceImp implements HotPointService {
 	 */
 	@Override
 	public String searchHotPoint() {
-		List<Msg> msgs = msgDao.findAll();
+		List<Msg> msgs = msgDao.getAllTweets();
 		Timestamp now = new Timestamp(System.currentTimeMillis());
 		Timestamp monthago = new Timestamp(System.currentTimeMillis() - 86400);
 		Integer mostCollectMsg = new Integer(0);
-		String msgContent;
+		String msgContent = null;
 		for(Msg msg :msgs){
 			//check the recent date
 			if(msg.getMsgDate().compareTo(now) < 0 && msg.getMsgDate().compareTo(monthago) > 0){

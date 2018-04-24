@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.opensymphony.xwork2.ActionSupport;
-import com.service.HotPointService;
+import service.HotPointService;
 
 @Component("hotPointAction")
 @Scope("prototype")
