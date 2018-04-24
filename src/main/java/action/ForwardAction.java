@@ -27,6 +27,15 @@ public class ForwardAction extends ActionSupport implements SessionAware {
 
     }
 
+    /**
+     * 转发的微博实际上也是属于msg
+     * 因此仍然沿用了MsgForm
+     * 注意要设定转发的标志
+     * 具体看Service层逻辑
+     * @return
+     * @throws Exception
+     */
+
     @Override
     public String execute() throws Exception {
 

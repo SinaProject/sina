@@ -20,6 +20,8 @@
 </head>
 <body>
 
+<!--登陆和注册页面均实现了md5密码加密存储进数据库，无需解密，直接对比即可-->
+
 <div class="w3-container w3-half w3-margin-top">
     <form id="login-form" action="login.action" class="w3-container w3-card-4">
         <p>

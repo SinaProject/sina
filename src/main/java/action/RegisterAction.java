@@ -19,6 +19,11 @@ public class RegisterAction extends ActionSupport {
 
     private UserForm user;
 
+
+    /**
+     * 定义一个字符串返回结果
+     * 以告知前端重复用户名校验结果
+     */
     private String result;
 
     @Autowired
@@ -31,6 +36,11 @@ public class RegisterAction extends ActionSupport {
     public void setUser(UserForm user) {
         this.user = user;
     }
+
+    /**
+     *
+     * @return
+     */
 
     public String execute() {
         try {
@@ -46,6 +56,13 @@ public class RegisterAction extends ActionSupport {
         }
     }
 
+
+    /**
+     * 用户名校验函数
+     * 仅返回校验结果
+     * 由前端对结果再进行页面显示处理（已完成）
+     * @return
+     */
     public String validation(){
 
 

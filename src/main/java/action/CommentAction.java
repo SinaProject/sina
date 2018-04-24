@@ -27,6 +27,11 @@ public class CommentAction extends ActionSupport implements SessionAware {
 
     private CommentForm commentForm;
     private List<Comment> commentList;
+
+    /**
+     * 历史遗留的msgId，没时间更改了，如有需要的接着这个来用
+     *
+     */
     private int msgId;
 
     private Map session;
@@ -59,6 +64,12 @@ public class CommentAction extends ActionSupport implements SessionAware {
         this.msgId = msgId;
     }
 
+
+    /**
+     * 执行添加评论
+     * @return
+     * @throws Exception
+     */
     public String execute() throws Exception {
         if(commentService.addComment(commentForm)!=null){
             return SUCCESS;
@@ -67,6 +78,12 @@ public class CommentAction extends ActionSupport implements SessionAware {
     }
 
 
+    /**
+     * 返回某一条微博的所有评论到前端，以json为数据格式
+     * 解析方法具体看前端页面
+     * @return
+     * @throws Exception
+     */
 
     public String findAllCommments() throws Exception {
 

@@ -22,6 +22,8 @@ public class CollectServiceImpl implements CollectService {
     @Autowired
     CollectDao collectDao;
 
+
+
     public Object addCollect(int userId,int msgId) {
         Collect collect = new Collect();
 

@@ -38,6 +38,13 @@ public class LoginAction extends ActionSupport implements SessionAware {
         this.session=session;
     }
 
+
+    /**
+     * 将登陆进来的userId保存到session中
+     * 登出时再删除
+     * 登出逻辑未编写
+     * @return
+     */
     public String execute() {
         try {
 

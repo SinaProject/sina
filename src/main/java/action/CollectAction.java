@@ -22,6 +22,11 @@ public class CollectAction extends ActionSupport implements SessionAware {
     private Map session;
 
 
+    /**
+     * 收藏时从前端传回msgId以及userId进行添加收藏
+     * 具体方法看Dao层实现
+     */
+
     private int msgId;
 
     private int userId;
@@ -57,6 +62,12 @@ public class CollectAction extends ActionSupport implements SessionAware {
         this.userId = userId;
     }
 
+    /**
+     * 执行添加
+     * @return
+     * @throws Exception
+     */
+
     @Override
     public String execute() throws Exception {
 
@@ -68,6 +79,13 @@ public class CollectAction extends ActionSupport implements SessionAware {
         return ERROR;
     }
 
+    /**
+     * 查找某个用户的所有收藏
+     * 收藏实体类数据库设计时不包含内容，只包括引用的msgId
+     * 因此还需更改返回逻辑使前端方便显示收藏的具体内容
+     * @return
+     */
+
     public String findAllCollects(){
 
         userId=(Integer) session.get("userId");
@@ -76,6 +94,12 @@ public class CollectAction extends ActionSupport implements SessionAware {
 
         return SUCCESS;
     }
+
+    /**
+     * 撤销收藏，前端暂时还没实现
+     * @return
+     * @throws Exception
+     */
 
     public String revertCollect() throws Exception {
 
