@@ -47,4 +47,7 @@ public interface MsgDao {
     void updateTweetOnLike(int msgId);
 
 
+    void updateTweet(Msg msg);
+
+
 }

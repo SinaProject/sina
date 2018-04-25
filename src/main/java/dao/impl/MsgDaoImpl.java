@@ -108,4 +108,9 @@ public class MsgDaoImpl implements MsgDao {
         sqlQuery.setParameter(0,msgId);
         sqlQuery.executeUpdate();
     }
+
+    @Override
+    public void updateTweet(Msg msg) {
+
+    }
 }
