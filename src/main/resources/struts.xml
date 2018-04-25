@@ -30,7 +30,6 @@
 
     <package name="ajax" namespace="/json" extends="json-default">
         <action name="Tweets" class="action.TweetAction" method="findAllGoods">
-            <!-- 将返回类型设置为json -->
             <result name="success" type="json">
                 <param name="root">msgList</param>
             </result>
