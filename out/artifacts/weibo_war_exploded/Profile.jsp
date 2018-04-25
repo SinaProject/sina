@@ -5,6 +5,11 @@
   Time: 下午12:43
   To change this template use File | Settings | File Templates.
 --%>
+
+
+<%--
+    进来先看script脚本，body前面的内容不清楚的话不要随便乱动
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
@@ -303,7 +308,15 @@
     <p>Powered by <a href="http://w3schools.wang/" target="_blank">w3.css</a></p>
 </footer>
 
+
+
 <script>
+
+    /**
+     * 以下两个函数为w3.css模板自带的函数
+     * 为导航栏的设计，暂时未处理
+     * @param id
+     */
     // Accordion
     function myFunction(id) {
         var x = document.getElementById(id);
@@ -326,6 +339,15 @@
             x.className = x.className.replace(" w3-show", "");
         }
     }
+
+    /**
+     * 1. ajax发送get请求到对应动作，action定义先看struts.xml文件里配置，不会的基本模仿即可
+     * 2. 微博内容在页面加载完成后动态添加，以卡片的形式添加，插入位置看上面的html注释
+     * 3. 对这些卡片内容、元素进行操作时一定要注意区分不同内容的卡片使用不同的id，
+     *    由于历史原因，有些元素未定义不同id，使用时要注意，可以参考三个按钮的设计
+     * 4. 返回list对应action里的list，在xml定义
+     *
+     */
 
     //获取微博内容
     $(document).ready(function () {
@@ -376,6 +398,10 @@
         })
     })
 
+    /**
+     * 以下两个函数为了传递参数到评论和转发的弹出框
+     * @param msgId
+     */
     function forwardButton(msgId) {
         document.getElementById("forwardid").value=msgId;
     }
@@ -383,6 +409,11 @@
         document.getElementById("msgid").value=msgId;
     }
 
+
+    /**
+     * 以下三个jquery函数实现的逻辑类似，都是通过jquery事件委托（on或者delegate均可）的函数，对上面动态添加的微博内容的
+     * 元素进行函数绑定
+     */
     //添加评论加载
     $("div#middle-column").delegate("button#to-comment","click",function(){
 
@@ -411,6 +442,11 @@
     $("div#middle-column").on("click","button[id^='to-collect-']",function(){
 
 
+        /**
+         *  这里和下面的类似，通过this表示msgId属性是当前按钮的属性
+         *  一定要遵守这样的格式，否则不能根据不同卡片的按钮返回不同的msgId
+         *  点赞功能实现同解
+         */
 
         var msgId=$(this).attr("msgId");
         alert(msgId);
@@ -432,7 +468,7 @@
     });
 
 
-
+    //点赞调用
     $("div#middle-column").on("click","button[id^='to-like-']",function(){
 
         var msgId=$(this).attr('msgId');
