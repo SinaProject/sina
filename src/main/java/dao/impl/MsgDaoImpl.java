@@ -49,8 +49,8 @@ public class MsgDaoImpl implements MsgDao {
 
     public List getAllTweetsForUser(int userId) {
         String hql = "FROM Msg e WHERE e.userId=?";
-
         Query query = sessionFactory.getCurrentSession().createQuery(hql);
+
         query.setParameter(0,userId);
         return query.list();
     }

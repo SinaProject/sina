@@ -43,6 +43,7 @@ public interface MsgDao {
     //编辑微博(实现使可通过对象复制)
 
 
+
     void updateTweetOnLike(int msgId);
 
 
