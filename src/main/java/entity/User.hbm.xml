@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="entity.User" table="user" schema="sina">
+        <id name="userId">
+            <column name="userID" sql-type="int(11)"/>
+        </id>
+        <property name="userName">
+            <column name="userName" sql-type="varchar(30)" length="30"/>
+        </property>
+        <property name="userPicture">
+            <column name="userPicture" sql-type="varchar(100)" length="100" not-null="true"/>
+        </property>
+        <property name="password">
+            <column name="password" sql-type="varchar(32)" length="32"/>
+        </property>
+        <property name="sex">
+            <column name="sex" sql-type="char(2)" length="2" not-null="true"/>
+        </property>
+        <property name="userPhone">
+            <column name="userPhone" sql-type="varchar(40)" length="40" not-null="true"/>
+        </property>
+        <property name="userBlogAddress">
+            <column name="userBlogAddress" sql-type="varchar(100)" length="100" not-null="true"/>
+        </property>
+        <property name="userBirth">
+            <column name="userBirth" sql-type="date" not-null="true"/>
+        </property>
+        <property name="userInfo">
+            <column name="userInfo" sql-type="varchar(100)" length="100" not-null="true"/>
+        </property>
+        <property name="bkImage">
+            <column name="bkImage" sql-type="varchar(100)" length="100" not-null="true"/>
+        </property>
+        <property name="userRole">
+            <column name="userRole" sql-type="varchar(16)" length="15" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

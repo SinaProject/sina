@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+
+<struts>
+
+    <constant name="struts.i18n.encoding" value="UTF-8" />
+
+    <package name="default" extends="struts-default">
+        <action name="register" class="action.RegisterAction">
+            <result name="input">/Register.jsp</result>
+            <result name="success">/Login.jsp</result>
+        </action>
+
+        <action name="tweet" class="action.TweetAction" method="execute">
+            <result name="success">/Profile.jsp</result>
+        </action>
+
+        <action name="login" class="action.LoginAction">
+            <result name="success">/Profile.jsp</result>
+        </action>
+
+        <action name="comment" class="action.CommentAction">
+            <result name = "success">/Profile.jsp</result>
+        </action>
+        
+        <action name="addfollow" class="aciton.FansAction" method="addFollow">
+         	<result name = "success">/Profile.jsp</result>
+        </action>
+        
+       
+    </package>
+
+    <package name="ajax" namespace="/json" extends="json-default">
+        <action name="Tweets" class="action.TweetAction" method="findAllGoods">
+            <!-- 将返回类型设置为json -->
+            <result name="success" type="json">
+                <param name="root">msgList</param>
+            </result>
+        </action>
+    </package>
+
+
+</struts>
