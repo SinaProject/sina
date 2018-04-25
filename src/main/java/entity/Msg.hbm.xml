@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="entity.Msg" table="msg" dynamic-update="true" schema="sina">
+        <id name="msgId">
+            <column name="msgID" sql-type="int(11)"/>
+        </id>
+        <property name="msgContent">
+            <column name="msgContent" sql-type="varchar(400)" length="400" not-null="true"/>
+        </property>
+        <property name="msgCollectNum">
+            <column name="msgCollectNum" sql-type="int(11)" not-null="true"/>
+        </property>
+        <property name="msgForward">
+            <column name="msgForward" sql-type="int(11)" not-null="true"/>
+        </property>
+        <property name="msgReplyNum">
+            <column name="msgReplyNum" sql-type="int(11)" not-null="true"/>
+        </property>
+        <property name="msgDate">
+            <column name="msgDate" sql-type="datetime" not-null="true"/>
+        </property>
+        <property name="msgIsForward">
+            <column name="msgIsForward" sql-type="char(1)" length="1" not-null="true"/>
+        </property>
+        <property name="msgForwardId">
+            <column name="msgForwardID" sql-type="int(11)" not-null="true"/>
+        </property>
+        <property name="masgLink">
+            <column name="masgLink" sql-type="varchar(100)" length="100" not-null="true"/>
+        </property>
+        <property name="msgZanNum">
+            <column name="msgZanNum" sql-type="int(11)" not-null="true"/>
+        </property>
+        <property name="getUserName">
+            <column name="userName" sql-type="varchar(32)" not-null="true"/>
+        </property>
+        <property name="userId">
+            <column name="userId" sql-type="int(11)" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>
