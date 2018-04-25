@@ -4,6 +4,7 @@ public class UserForm {
 
     private String username;
     private String password;
+    private String userRole;
 
     public String getUsername() {
         return username;
@@ -21,5 +22,13 @@ public class UserForm {
         this.password = password;
     }
 
+	public String getUserRole() {
+		return userRole;
+	}
+
+	public void setUserRole(String userRole) {
+		this.userRole = userRole;
+	}
+    
 
 }
