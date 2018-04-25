@@ -57,14 +57,13 @@
             //使用$.post方式
             $.post(
 
-                url,        //服务器要接受的url
+                url,//服务器要接受的url
 
-                params,     //传递的参数
+                params,//传递的参数
 
                 function callback(data){ //服务器返回后执行的函数参数 data保存的就是服务器发送到客户端的数据
 
-                    //alert(data);
-                    var result = eval("("+data+")");    //包数据解析为json格式
+                    var result = data;    //包数据解析为json格式
                     if(result=="yes"){
                         $('#name').html("用户已存在!");}
                     else{
