@@ -1,8 +1,11 @@
-
+#build files
 /target/
+#idea files
 /.idea/
+*.iml
+#eclipse files
 /.settings/
-.iml
+
 # Compiled class file
 *.class
 

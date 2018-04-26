@@ -34,7 +34,7 @@
         </p>
         <p>
             <button type="submit" onclick="md5()" class="w3-btn w3-section w3-teal w3-ripple">登陆</button>
-            <label style="float:right"><input type="checkbox" name="isAdmin" >管理员用户？</label>
+            <!-- <label style="float:right"><input type="checkbox" name="isAdmin" >管理员用户？</label> -->
         </p>
         <span class="w3-right w3-padding w3-hide-small">
             <a href="/Register.jsp">没有账户？</a>

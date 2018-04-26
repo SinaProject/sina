@@ -20,7 +20,6 @@ public class LoginAction extends ActionSupport implements SessionAware {
 
 
     private UserForm user;
-    private boolean isAdmin;
     private Map session;
 
     @Autowired
@@ -45,11 +44,9 @@ public class LoginAction extends ActionSupport implements SessionAware {
      * 登出逻辑未编写
      * @return
      */
+    @Override
     public String execute() {
         try {
-        	if(isAdmin){
-        		
-        	}
             User backUser=userService.login(user);
             
             if(backUser!=null){

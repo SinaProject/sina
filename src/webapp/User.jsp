@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
@@ -25,7 +26,7 @@
 </head>
 
 <body>
-	<form>
+	<form method="request">
 		用户名搜索：<input type="text" name="search"/>
 		<input type="submit" value="submit"/>
 	</form>
@@ -41,17 +42,18 @@
 			<td></td>
 		</tr>
 
-		<c:foreach items="" var="user">
+		<s:iterator value="users">
 			<tr>
-				<td>${user.userName}</td>
-				<td>${user.sex}</td>
-				<td>${user.userPhone}</td>
-				<td>${user.userBlogAddress}</td>
-				<td>${user.userBirth}</td>
-				<td>${user.userRole}</td>
-				<td><button type="submit">删除</button><buttom>修改</buttom></td>
+				<td><s:property value="user.userName"/></td>
+				<td><s:property value="user.sex/></td>
+				<td><s:property value="user.userPhone/></td>
+				<td><s:property value="user.userBlogAddress/></td>
+				<td><s:property value="user.userBirth/></td>
+				<td><s:property value="user.userRole/></td>
+				<td><s:submit value="删除" action="deleteUser.do"/>
+				<s:submit value="修改" action="modifyUser.jsp"/></td>
 			</tr>
-		</c:foreach>
+		</s:iterator>
 	</table>
 </body>
 </html>

@@ -1,8 +1,6 @@
-<<<<<<< HEAD
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
+>>>>>>>=branch 'master' of ssh\://git@github.com/SinaProject/sina.git
 eclipse.preferences.version=1
 encoding//src/webapp/User.jsp=UTF-8
-encoding/<project>=UTF-8
-=======
-eclipse.preferences.version=1
-encoding/<project>=UTF-8
->>>>>>> branch 'master' of ssh://git@github.com/SinaProject/sina.git
+encoding//src/webapp/adminProfile.jsp=UTF-8

@@ -25,7 +25,12 @@
         <action name="comment" class="action.CommentAction">
             <result name = "success">/Profile.jsp</result>
         </action>
-
+		<action name="adminlogin" class="action.AdminLoginAction">
+			<result name="success">/adminProfile.jsp</result>
+		</action>
+		<action name="checkUser" class="action.UserAction" method="queryUser">
+			<result name="success">/User.jsp</result>
+		</action>
     </package>
 
     <package name="ajax" namespace="/json" extends="json-default">

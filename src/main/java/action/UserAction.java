@@ -9,7 +9,10 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import entity.User;
 import com.opensymphony.xwork2.ActionSupport;
+
+import service.AdminUserService;
 import service.UserService;
+import utils.UserForm;
 
 @Component("userAction")
 @Scope("prototype")
@@ -19,39 +22,36 @@ public class UserAction extends ActionSupport{
      */
     private static final long serialVersionUID = 1L;
     @Autowired
-    private UserService userService;
-
-    private User user;
-
+    private AdminUserService adminUserService;
+    private UserForm userForm;
     private String searchText;
-
     private List<User> users;
 
-    public User getUser() {
-        return user;
+    public UserForm getUserForm() {
+        return userForm;
     }
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(UserForm userForm) {
+        this.userForm = userForm;
     }
-    public UserService getUserService() {
-        return userService;
+    public AdminUserService getUserService() {
+        return adminUserService;
     }
     @Resource
-    public void setUserService(UserService userService) {
-        this.userService = userService;
+    public void setUserService(AdminUserService adminUserService) {
+        this.adminUserService = adminUserService;
     }
-
+    
     public String addUser(){
-        if(userService.exits(user.getUserName())){
+        if(adminUserService.isUsernameExists(userForm.getUsername())){
             return ERROR;
         }
-        userService.save(user);
+        adminUserService.save(userForm);
         return SUCCESS;
     }
 
     public String queryUser(){
-        searchText = getParam("queryText");
-        users = userService.queryUsers(searchText);
+        searchText = getParam("search");
+        users = adminUserService.queryUsers(searchText);
         return SUCCESS;
     }
 
@@ -59,11 +59,12 @@ public class UserAction extends ActionSupport{
         try {
             Integer param = Integer.parseInt(getParam("param"));
             if(param == 0){
+            	UserForm checkedUser;
                 Integer id = Integer.parseInt(getParam("id"));
-                user = userService.getUser( id);
+                checkedUser = adminUserService.getUser(id);
                 return "editUser";
             }else if(param == 1){
-                userService.modifyUser(user);
+                adminUserService.modifyUser(userForm);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -74,7 +75,7 @@ public class UserAction extends ActionSupport{
     public String deleteUser(){
         try {
             Integer param = Integer.parseInt(getParam("id"));
-            userService.deleteUser(param);
+            adminUserService.deleteUser(param);
         } catch (Exception e) {
             e.printStackTrace();
         }

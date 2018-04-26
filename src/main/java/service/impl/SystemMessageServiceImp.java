@@ -42,10 +42,10 @@ public class SystemMessageServiceImp implements SystemMessageService {
 		msgDao.deleteTweet(msgID);
 	}
 
-	@Override
+	/*@Override
 	public void modifyMessage(Msg message) {
 		msgDao.updateTweet(message);
-	}
+	}*/
 
 	@Override
 	public List<Msg> queryMessage(int userID, String msgSubContent) {
@@ -57,4 +57,10 @@ public class SystemMessageServiceImp implements SystemMessageService {
 			}
 		}
 		return queryMsgs;
+	}
+
+	@Override
+	public void modifyMessage(Msg message) {
+		// TODO Auto-generated method stub
+		
 	}}
