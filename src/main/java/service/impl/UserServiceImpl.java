@@ -59,6 +59,9 @@ public class UserServiceImpl implements UserService{
      */
 
     public Boolean isUsernameExists(String username) throws HibernateException {
+
+
+
         if(userDao.getUser(username)!=null){
             return true;
         }

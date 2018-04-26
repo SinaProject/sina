@@ -12,7 +12,7 @@
             <column name="commentContent" sql-type="varchar(200)" length="200" not-null="true"/>
         </property>
         <property name="commentTime">
-            <column name="commentTime" sql-type="datetime" not-null="true"/>
+            <column name="commentTime" sql-type="datetime" not-null="false"/>
         </property>
         <property name="userId">
             <column name="userID" sql-type="int(11)"/>

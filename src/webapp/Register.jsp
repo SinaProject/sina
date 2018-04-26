@@ -66,7 +66,7 @@
                     var result = data;    //包数据解析为json格式
                     if(result=="yes"){
                         $('#name').html("用户已存在!");}
-                    else{
+                    else if(result=="no"){
                         $('#name').html("可以注册!");
                     }
                 },

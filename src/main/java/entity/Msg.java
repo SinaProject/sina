@@ -10,7 +10,7 @@ import java.sql.Timestamp;
 public class Msg {
     private int msgId;
     private String msgContent;
-    private Integer msgCollectNum;
+    Integer msgCollectNum;
     private Integer msgForward;
     private Integer msgReplyNum;
     private Timestamp msgDate;
@@ -43,7 +43,7 @@ public class Msg {
     }
 
     @Basic
-    @Column(name = "msgCollectNum", nullable = true, updatable = false, insertable = false)
+    @Column(name = "msgCollectNum", nullable = true)
     public Integer getMsgCollectNum() {
         return msgCollectNum;
     }

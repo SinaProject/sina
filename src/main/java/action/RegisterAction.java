@@ -78,7 +78,6 @@ public class RegisterAction extends ActionSupport {
 
         if(userService.isUsernameExists(user.getUsername())){
             result = "yes";
-
         }else {
            result="no";
         }
