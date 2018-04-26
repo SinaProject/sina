@@ -20,6 +20,8 @@
 </head>
 <body>
 
+<!--登陆和注册页面均实现了md5密码加密存储进数据库，无需解密，直接对比即可-->
+
 <div class="w3-container w3-half w3-margin-top">
     <form id="login-form" action="login.action" class="w3-container w3-card-4">
         <p>
@@ -30,9 +32,10 @@
             <label>密码</label>
             <input id="pwd" type="password" name="user.password"  class="w3-input" style="width:90%" required="true"/>
         </p>
+
         <p>
             <button type="submit" onclick="md5()" class="w3-btn w3-section w3-teal w3-ripple">登陆</button>
-            <label style="float:right"><input type="checkbox" name="isAdmin" >管理员用户？</label>
+            <!-- <label style="float:right"><input type="checkbox" name="isAdmin" >管理员用户？</label> -->
         </p>
         <span class="w3-right w3-padding w3-hide-small">
             <a href="/Register.jsp">没有账户？</a>

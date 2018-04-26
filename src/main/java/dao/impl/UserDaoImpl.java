@@ -22,21 +22,26 @@ public class UserDaoImpl implements UserDao{
 
 
     /**
+
      *@描述 保存用户
+
      *@参数
-     *@返回值
+
+     *@返回�?
+
      */
     public Object saveObject(User user) throws HibernateException {
         return sessionFactory.getCurrentSession().save(user);
         
     }
+
     /**
 
      *@描述 获取单个用户
 
      *@参数
 
-     *@返回值
+     *@返回�?
 
      */
 
@@ -46,11 +51,11 @@ public class UserDaoImpl implements UserDao{
 
     /**
 
-     *@描述 删除一个用户
+     *@描述 删除�?个用�?
 
      *@参数
 
-     *@返回值
+     *@返回�?
 
      */
 
@@ -64,7 +69,7 @@ public class UserDaoImpl implements UserDao{
 
      *@参数
 
-     *@返回值
+     *@返回�?
 
      */
     public List<User> getAllUser() throws HibernateException {
@@ -73,5 +78,12 @@ public class UserDaoImpl implements UserDao{
         Query query=sessionFactory.getCurrentSession().createQuery(hql);
         return query.list();
 
+    }
+
+    public User getUser(String username) throws HibernateException {
+        String hql="FROM User e WHERE e.userName=?";
+        Query query=sessionFactory.getCurrentSession().createQuery(hql);
+        query.setParameter(0,username);
+        return (User)query.list().get(0);
     }
 }

@@ -5,6 +5,11 @@
   Time: 下午12:43
   To change this template use File | Settings | File Templates.
 --%>
+
+
+<%--
+    进来先看script脚本，body前面的内容不清楚的话不要随便乱动
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
@@ -34,7 +39,7 @@
             <a class="w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);"
                onclick="openNav()"><i class="fa fa-bars"></i></a>
         </li>
-        <li><a href="#" class="w3-padding-large w3-theme-d4"><i class="fa fa-home w3-margin-right"></i>Logo</a></li>
+        <li><a href="#" class="w3-padding-large w3-theme-d4"><i class="fa fa-home w3-margin-right"></i>Tweet</a></li>
         <li class="w3-hide-small"><a href="#" class="w3-padding-large w3-hover-white" title="News"><i
                 class="fa fa-globe"></i></a></li>
         <li class="w3-hide-small"><a href="#" class="w3-padding-large w3-hover-white" title="Account Settings"><i
@@ -142,6 +147,7 @@
                 <div class="w3-container">
                     <p>Interests</p>
                     <p>
+                    <!-- TODO: 使用热点搜索 -->
                         <span class="w3-tag w3-small w3-theme-d5">News</span>
                         <span class="w3-tag w3-small w3-theme-d4">W3Schools</span>
                         <span class="w3-tag w3-small w3-theme-d3">Labels</span>
@@ -192,6 +198,7 @@
 
 
             <!--此处weibo内容由js加入-->
+            <!---->
 
 
             <!--转发框-->
@@ -226,10 +233,12 @@
                             <label id="comment-content"><b>请输入评论内容</b></label>
                             <form id="comment-form" action="comment.action">
                                 <input id="_userid" type="hidden" name="commentForm.userId" value="<%=session.getAttribute("userId")%>"/>
-                                <input id="commentid" type="hidden" name="commentForm.commentId"/>
+                                <input id="msgid" type="hidden" name="commentForm.msgId"/>
                                 <input class="w3-input w3-border w3-hover-border-black w3-margin-bottom" type="text" name="comment.commentContent">
-                                <button id="comment-test" type="submit" class="w3-btn w3-btn-block w3-green w3-section">评论</button>
+                                <button id="comment" type="submit" class="w3-btn w3-btn-block w3-green w3-section">评论</button>
                             </form>
+                        </div>
+                        <div id="comment-list" style="padding: 5px">
 
                         </div>
                     </div>
@@ -300,7 +309,15 @@
     <p>Powered by <a href="http://w3schools.wang/" target="_blank">w3.css</a></p>
 </footer>
 
+
+
 <script>
+
+    /**
+     * 以下两个函数为w3.css模板自带的函数
+     * 为导航栏的设计，暂时未处理
+     * @param id
+     */
     // Accordion
     function myFunction(id) {
         var x = document.getElementById(id);
@@ -324,8 +341,18 @@
         }
     }
 
+    /**
+     * 1. ajax发送get请求到对应动作，action定义先看struts.xml文件里配置，不会的基本模仿即可
+     * 2. 微博内容在页面加载完成后动态添加，以卡片的形式添加，插入位置看上面的html注释
+     * 3. 对这些卡片内容、元素进行操作时一定要注意区分不同内容的卡片使用不同的id，
+     *    由于历史原因，有些元素未定义不同id，使用时要注意，可以参考三个按钮的设计
+     * 4. 返回list对应action里的list，在xml定义
+     *
+     */
+
     //获取微博内容
     $(document).ready(function () {
+
         var url = "/json/Tweets.action";
         $.ajax({
             type: 'get',
@@ -333,10 +360,20 @@
             dataType: 'json',
             success: function (data) {
                 $.each(data, function (i, list) {
-                    var card = $("<div class=\"w3-container w3-card-2 w3-white w3-round w3-margin\"><br>\n" +
+                    //以下求时间差（也可以直接显示为发布时间）
+                    var fromCurrentTime = new Date().getTime()-new Date(list.msgDate).getTime();
+                    var days=Math.floor(fromCurrentTime/(24*3600*1000));
+                    //计算出小时数
+                    var leave1=fromCurrentTime%(24*3600*1000);    //计算天数后剩余的毫秒数
+                    var hours=Math.floor(leave1/(3600*1000));
+                    //计算相差分钟数
+                    var leave2=leave1%(3600*1000);        //计算小时数后剩余的毫秒数
+                    var minutes=Math.floor(leave2/(60*1000));
+                    var time = days + "天"+hours+"时"+minutes+"分";
+                    var card = $("<div id=\"msg-"+list.msgId+"\" class=\"w3-container w3-card-2 w3-white w3-round w3-margin\"><br>\n" +
                         "                <!--头像+名字+发表时间-->\n" +
                         "                <img src=\"http://cdn.w3schools.wang/img_avatar2.png\" alt=\"Avatar\" class=\"w3-left w3-circle w3-margin-right\" style=\"width:60px\">\n" +
-                        "                <span class=\"w3-right w3-opacity\">1 min</span>\n" +
+                        "                <span class=\"w3-right w3-opacity\">"+time+"前"+"</span>\n" +
                         "                <h4>" + list.userName + "</h4><br>\n" +
                         "                <hr class=\"w3-clear\">\n" +
                         "\n" +
@@ -351,9 +388,10 @@
                         "                    </div>\n" +
                         "                </div>\n" +
                         "                <!--点赞按钮和评论按钮-->\n" +
-                        "                <button type=\"button\" class=\"w3-btn w3-theme-d1 w3-margin-bottom\"><i class=\"fa fa-thumbs-up\"></i>点赞</button>\n" +
-                            "            <button type=\"button\" onclick=\"document.getElementById('id02').style.display='block';commentButton("+list.msgId+")\" class=\"w3-btn w3-theme-d1 w3-margin-bottom\"><i class=\"fa fa-comment\"></i>评论</button>\n" +
-                        "                <button type=\"button\" onclick=\"document.getElementById('id01').style.display='block';forwardButton("+list.msgId+")\" class=\"w3-btn w3-theme-d2 w3-margin-bottom\"><i class=\"fa fa-comment\"></i>转发</button>\n" +
+                        "                <button id=\"to-like-"+list.msgId+"\" msgId=\""+list.msgId+"\" type=\"button\" class=\"w3-btn w3-theme-d1 w3-margin-bottom\"><i class=\"fa fa-thumbs-up\"></i>点赞</button>\n" +
+                            "            <button id=\"to-comment\" type=\"button\" onclick=\"document.getElementById('id02').style.display='block';commentButton("+list.msgId+")\" class=\"w3-btn w3-theme-d1 w3-margin-bottom\"><i class=\"fa fa-comment\"></i>评论</button>\n" +
+                        "                <button type=\"button\" onclick=\"document.getElementById('id01').style.display='block';forwardButton("+list.msgId+")\" class=\"w3-btn w3-theme-d2 w3-margin-bottom\"><i class=\"fa fa-comment\"></i>转发</button>\n"+
+                        "                <button id=\"to-collect-"+list.msgId+"\"  msgId=\""+list.msgId+"\" type=\"button\" class=\"w3-btn w3-theme-d2 w3-margin-bottom w3-padding-right\"><i class=\"fa fa-star\"></i>收藏</button>\n"+
                         "            </div>");
                     $("#middle-column").append(card);
                 })
@@ -361,33 +399,97 @@
         })
     })
 
-
+    /**
+     * 以下两个函数为了传递参数到评论和转发的弹出框
+     * @param msgId
+     */
     function forwardButton(msgId) {
         document.getElementById("forwardid").value=msgId;
     }
     function commentButton(msgId) {
-        document.getElementById("commentid").value=msgId;
+        document.getElementById("msgid").value=msgId;
     }
 
-    function likeButton(msgId){
 
-    }
+    /**
+     * 以下三个jquery函数实现的逻辑类似，都是通过jquery事件委托（on或者delegate均可）的函数，对上面动态添加的微博内容的
+     * 元素进行函数绑定
+     */
+    //添加评论加载
+    $("div#middle-column").delegate("button#to-comment","click",function(){
 
-    //
-    // $("button#forward").click(
-    //     var url="";
-    //     $.ajax({
-    //         type:"POST",
-    //         url:url,
-    //         data:{
-    //
-    //         },
-    //         dataType:"json",
-    //         success:function(){
-    //
-    //         }
-    //     })
-    // );
+        $("div#comment-list").empty();
+        var url = "/json/Comments.action";
+        var msgId = document.getElementById("msgid").value;
+        $.ajax({
+            url: url,
+            type: 'get',
+            data: {"msgId":msgId},
+            dataType: 'json',
+            success: function (data) {
+                $.each(data, function (i,list) {
+                    var commentcard = $("<div class=\"w3-card\">\n" +
+                        "                                <p>"+list.commentContent+"</p>\n" +
+                        "                            </div>");
+                    $("#comment-list").append(commentcard);
+                })
+            }
+        })
+
+    });
+
+    //收藏函数调用
+
+    $("div#middle-column").on("click","button[id^='to-collect-']",function(){
+
+
+        /**
+         *  这里和下面的类似，通过this表示msgId属性是当前按钮的属性
+         *  一定要遵守这样的格式，否则不能根据不同卡片的按钮返回不同的msgId
+         *  点赞功能实现同解
+         */
+
+        var msgId=$(this).attr("msgId");
+        alert(msgId);
+        var userId=<%=(Integer)session.getAttribute("userId")%>
+        var url="/json/collect.action";
+
+        //判断微博是否已经收藏
+
+        $.ajax({
+            url:url,
+            data:{"msgId":msgId,"userId":userId},
+            type:"post",
+            dataType:"json",
+            success:function(result){
+                alert("成功收藏");
+            }
+        })
+
+    });
+
+
+    //点赞调用
+    $("div#middle-column").on("click","button[id^='to-like-']",function(){
+
+        var msgId=$(this).attr('msgId');
+        alert(msgId);
+        var url="/json/like.action";
+        alert(msgId);
+        $.ajax({
+            url:url,
+            data:{"msg.msgId":msgId},
+            type:"post",
+            dataType:"json",
+            success:function(result){
+                alert("成功点赞");
+
+            }
+        })
+
+
+
+    });
 
 
 </script>

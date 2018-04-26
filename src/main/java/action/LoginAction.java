@@ -20,7 +20,6 @@ public class LoginAction extends ActionSupport implements SessionAware {
 
 
     private UserForm user;
-    private boolean isAdmin;
     private Map session;
 
     @Autowired
@@ -38,11 +37,16 @@ public class LoginAction extends ActionSupport implements SessionAware {
         this.session=session;
     }
 
+
+    /**
+     * 将登陆进来的userId保存到session中
+     * 登出时再删除
+     * 登出逻辑未编写
+     * @return
+     */
+    @Override
     public String execute() {
         try {
-        	if(isAdmin){
-        		
-        	}
             User backUser=userService.login(user);
             
             if(backUser!=null){

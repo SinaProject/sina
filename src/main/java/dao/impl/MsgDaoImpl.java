@@ -3,6 +3,7 @@ package dao.impl;
 import dao.MsgDao;
 import entity.Msg;
 import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -25,11 +26,11 @@ public class MsgDaoImpl implements MsgDao {
 
     /**
 
-     *@描述 获得某一用户的某一条微博
+     *@描述 获得某一用户的某�?条微�?
 
      *@参数  int msgId, int userId
 
-     *@返回值  Msg
+     *@返回�?  Msg
 
      */
     public Msg getTweet(int msgId) {
@@ -38,11 +39,11 @@ public class MsgDaoImpl implements MsgDao {
 
     /**
 
-     *@描述 获得某一用户的所有微博
+     *@描述 获得某一用户的所有微�?
 
      *@参数  int userId
 
-     *@返回值  List<Msg>
+     *@返回�?  List<Msg>
 
      */
 
@@ -63,11 +64,11 @@ public class MsgDaoImpl implements MsgDao {
 
     /**
 
-     *@描述 增加一条微博
+     *@描述 增加�?条微�?
 
      *@参数  Msg msg
 
-     *@返回值
+     *@返回�?
 
      */
 
@@ -77,11 +78,11 @@ public class MsgDaoImpl implements MsgDao {
 
     /**
 
-     *@描述 删除一条微博
+     *@描述 删除�?条微�?
 
      *@参数  int msgId,int userId
 
-     *@返回值
+     *@返回�?
 
      */
 
@@ -90,24 +91,21 @@ public class MsgDaoImpl implements MsgDao {
         if(msg!=null){
             sessionFactory.getCurrentSession().delete(msg);
         }else {
-            //TODO 删除的异常处理
+            //TODO 删除的异常处�?
         }
 
     }
 
-
-
-
     /**
-     * 变更微博
-     * 具体看业务层
-     * 业务层先get到实例，修改了再调用该函数
+     * 更新点赞�?
+     * @param msgId
      */
 
-    public void updateTweet(Msg msg) {
+    public void updateTweetOnLike(int msgId) {
 
-        sessionFactory.getCurrentSession().update(msg);
+        String sql="UPDATE msg SET msgZanNum=msgZanNum+1 WHERE msgId=?";
+        SQLQuery sqlQuery=sessionFactory.getCurrentSession().createSQLQuery(sql);
+        sqlQuery.setParameter(0,msgId);
+        sqlQuery.executeUpdate();
     }
-
-
 }

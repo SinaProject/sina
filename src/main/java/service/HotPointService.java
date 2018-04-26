@@ -8,3 +8,4 @@ public interface HotPointService {
 	 */
 	public String searchHotPoint();
 }
+

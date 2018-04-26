@@ -62,10 +62,11 @@ public class CommentDaoImpl implements CommentDao {
      *@返回值  
     
      */
-    public List getAllCommentByTweet(int msgId) {
+    public List<Comment> getAllCommentByTweet(int msgId) {
 
-        String hql="FROM comment where msgId=?";
+        String hql="FROM Comment e where e.msgId=?";
         Query query=sessionFactory.getCurrentSession().createQuery(hql);
+        query.setParameter(0,msgId);
         return query.list();
     }
 }

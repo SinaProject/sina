@@ -18,6 +18,15 @@ public class UserServiceImpl implements UserService{
     @Autowired
     private UserDao userDao;
 
+
+    /**
+     *  由于userRole为非空字�?
+     *  这里默认注册时将用户设置为普通用户身�?
+     *  （将来可进一步进行身份验证优化）
+     * @param userForm
+     * @return
+     * @throws HibernateException
+     */
     public Object regUser(UserForm userForm) throws HibernateException {
         User user = new User();
         user.setUserName(userForm.getUsername());
@@ -38,5 +47,21 @@ public class UserServiceImpl implements UserService{
             }
         }
         return null;
+    }
+
+
+    /**
+     * 验证用户名是否重复时用到的�?�辑
+     * Dao层由Byname查询实现
+     * @param username
+     * @return
+     * @throws HibernateException
+     */
+
+    public Boolean isUsernameExists(String username) throws HibernateException {
+        if(userDao.getUser(username)!=null){
+            return true;
+        }
+        return false;
     }
 }

@@ -1,6 +1,7 @@
 package dao;
 
 import entity.User;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,5 +33,11 @@ public class UserDaoTest {
         User user = userDao.getUser(1);
 
         System.out.println(user.getUserName());
+    }
+
+    @Test
+    public void getUserByUsername(){
+        String username="windpine";
+        Assert.assertNotNull(userDao.getUser(username));
     }
 }

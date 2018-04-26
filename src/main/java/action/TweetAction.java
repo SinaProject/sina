@@ -33,6 +33,8 @@ public class TweetAction extends ActionSupport implements SessionAware{
 
     private Map session;
 
+    private String result;
+
     public void setSession(Map session) {
         this.session=session;
     }
@@ -54,6 +56,11 @@ public class TweetAction extends ActionSupport implements SessionAware{
         this.msgList = msgList;
     }
 
+
+    /**
+     * 添加一条微博，具体的处理逻辑看Service层
+     * @return
+     */
     public String execute() {
         try {
 
@@ -67,17 +74,31 @@ public class TweetAction extends ActionSupport implements SessionAware{
         }
     }
 
+
+    /**
+     * 返回所有微博，json格式
+     * （前端未实现分页功能）
+     * @return
+     * @throws IOException
+     */
     public String findAllGoods() throws IOException {
 
         this.msgList=msgService.getAllTweet();
-
         return SUCCESS;
     }
 
+    /**
+     * 点赞功能，具体逻辑看Service层
+     * （未实现统计点赞数目）
+     * @return
+     */
+    public String likeTeet(){
 
 
+        msgService.likeTeet(msg.getMsgId());
 
-    //TODO 评论转发点赞操作
 
+        return SUCCESS;
+    }
 
 }

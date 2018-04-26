@@ -1,3 +1,10 @@
+#build files
+/target/
+#idea files
+/.idea/
+*.iml
+#eclipse files
+/.settings/
 
 # Compiled class file
 *.class

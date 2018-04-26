@@ -9,9 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import dao.MsgDao;
 import dao.UserDao;
 import entity.Msg;
+import org.springframework.stereotype.Service;
 import service.SystemMessageService;
 import utils.MsgForm;
 
+@Service
 public class SystemMessageServiceImp implements SystemMessageService {	
 	@Autowired
 	private MsgDao msgDao;
@@ -40,10 +42,10 @@ public class SystemMessageServiceImp implements SystemMessageService {
 		msgDao.deleteTweet(msgID);
 	}
 
-	@Override
+	/*@Override
 	public void modifyMessage(Msg message) {
 		msgDao.updateTweet(message);
-	}
+	}*/
 
 	@Override
 	public List<Msg> queryMessage(int userID, String msgSubContent) {
@@ -55,4 +57,10 @@ public class SystemMessageServiceImp implements SystemMessageService {
 			}
 		}
 		return queryMsgs;
+	}
+
+	@Override
+	public void modifyMessage(Msg message) {
+		// TODO Auto-generated method stub
+		
 	}}

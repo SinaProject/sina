@@ -24,7 +24,8 @@
     <form id="register-form" action="register.action" class="w3-container w3-card-4">
         <p>
             <label>用户名</label>
-            <input type="text" name="user.username"  class="w3-input" style="width:90%" required="true"/>
+            <input type="text" id="userName" name="user.username"  class="w3-input" style="width:90%" required="true"/>
+            <span id="name"></span>
         </p>
         <p>
             <label>密码</label>
@@ -41,6 +42,39 @@
         var hash=hex_md5(document.getElementById("pwd").value);
         document.getElementById("pwd").value=hash;
     }
+
+    $(document).ready( function() {
+
+        //使用 Ajax 的方式 判断登录
+        $("#userName").blur( function() {
+
+            var url = '/json/register-validation.action';
+
+            //获取表单值，并以json的数据形式保存到params中
+            var params = {
+                "user.username":$("#userName").val(),
+            }
+            //使用$.post方式
+            $.post(
+
+                url,        //服务器要接受的url
+
+                params,     //传递的参数
+
+                function callback(data){ //服务器返回后执行的函数参数 data保存的就是服务器发送到客户端的数据
+
+                    //alert(data);
+                    var result = eval("("+data+")");    //包数据解析为json格式
+                    if(result=="yes"){
+                        $('#name').html("用户已存在!");}
+                    else{
+                        $('#name').html("可以注册!");
+                    }
+                },
+                'json'  //数据传递的类型  json
+            );
+        });
+    });
 </script>
 </body>
 </html>

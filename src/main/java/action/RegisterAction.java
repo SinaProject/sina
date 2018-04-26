@@ -3,10 +3,12 @@ package action;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import service.UserService;
 import utils.UserForm;
 
+import java.util.HashMap;
 import java.util.Map;
 
 
@@ -17,6 +19,13 @@ public class RegisterAction extends ActionSupport {
 
     private UserForm user;
 
+
+    /**
+     * 定义�?个字符串返回结果
+     * 以告知前端重复用户名校验结果
+     */
+    private String result;
+
     @Autowired
     private UserService userService;
 
@@ -26,6 +35,19 @@ public class RegisterAction extends ActionSupport {
 
     public void setUser(UserForm user) {
         this.user = user;
+    }
+
+    /**
+     *
+     * @return
+     */
+
+    public String getResult() {
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
     }
 
     public String execute() {
@@ -40,5 +62,26 @@ public class RegisterAction extends ActionSupport {
             e.printStackTrace();
             return ERROR;
         }
+    }
+
+
+    /**
+     * 用户名校验函�?
+     * 仅返回校验结�?
+     * 由前端对结果再进行页面显示处理（已完成）
+     * @return
+     */
+    public String validation(){
+
+
+        String name = user.getUsername();
+
+        if(userService.isUsernameExists(user.getUsername())){
+            this.result = "yes";
+        }else {
+           this.result="no";
+        }
+
+        return SUCCESS;
     }
 }

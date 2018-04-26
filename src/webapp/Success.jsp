@@ -11,6 +11,6 @@
     <title>Title</title>
 </head>
 <body>
-Success Register!
+Success！
 </body>
 </html>

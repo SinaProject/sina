@@ -28,6 +28,8 @@ public interface UserDao {
 
      List<User> getAllUser() throws HibernateException;
 
-     //获取
+     //获取用户名对应用户
+
+     User getUser(String username) throws HibernateException;
 
 }
