@@ -303,7 +303,6 @@
 <br>
 
 <script>
-
     /**
      * 以下两个函数为w3.css模板自带的函数
      * 为导航栏的设计，暂时未处理
@@ -318,10 +317,9 @@
         } else {
             x.className = x.className.replace("w3-show", "");
             x.previousElementSibling.className =
-                x.previousElementSibling.className.replace(" w3-theme-d1", "");
+                    x.previousElementSibling.className.replace(" w3-theme-d1", "");
         }
     }
-
     // Used to toggle the menu on smaller screens when clicking on the menu button
     function openNav() {
         var x = document.getElementById("navDemo");
@@ -331,7 +329,6 @@
             x.className = x.className.replace(" w3-show", "");
         }
     }
-
     /**
      * 1. ajax发送get请求到对应动作，action定义先看struts.xml文件里配置，不会的基本模仿即可
      * 2. 微博内容在页面加载完成后动态添加，以卡片的形式添加，插入位置看上面的html注释
@@ -340,10 +337,8 @@
      * 4. 返回list对应action里的list，在xml定义
      *
      */
-
     //获取微博内容
     $(document).ready(function () {
-
         var url = "/json/Tweets.action";
         $.ajax({
             type: 'get',
@@ -362,34 +357,33 @@
                     var minutes=Math.floor(leave2/(60*1000));
                     var time = days + "天"+hours+"时"+minutes+"分";
                     var card = $("<div id=\"msg-"+list.msgId+"\" class=\"w3-container w3-card-2 w3-white w3-round w3-margin\"><br>\n" +
-                        "                <!--头像+名字+发表时间-->\n" +
-                        "                <img src=\"http://cdn.w3schools.wang/img_avatar2.png\" alt=\"Avatar\" class=\"w3-left w3-circle w3-margin-right\" style=\"width:60px\">\n" +
-                        "                <span class=\"w3-right w3-opacity\">"+time+"前"+"</span>\n" +
-                        "                <h4>" + list.userName + "</h4><br>\n" +
-                        "                <hr class=\"w3-clear\">\n" +
-                        "\n" +
-                        "                <!--微博内容-->\n" +
-                        "                <p>" + list.msgContent + "</p>\n" +
-                        "                <div class=\"w3-row-padding\" style=\"margin:0 -16px\">\n" +
-                        "                    <div class=\"w3-half\">\n" +
-                        "                        <img src=\"http://cdn.w3schools.wang/img_lights.jpg\" style=\"width:100%\" alt=\"Northern Lights\" class=\"w3-margin-bottom\">\n" +
-                        "                    </div>\n" +
-                        "                    <div class=\"w3-half\">\n" +
-                        "                        <img src=\"http://cdn.w3schools.wang/img_nature.jpg\" style=\"width:100%\" alt=\"Nature\" class=\"w3-margin-bottom\">\n" +
-                        "                    </div>\n" +
-                        "                </div>\n" +
-                        "                <!--点赞按钮和评论按钮-->\n" +
-                        "                <button id=\"to-like-"+list.msgId+"\" msgId=\""+list.msgId+"\" type=\"button\" class=\"w3-btn w3-theme-d1 w3-margin-bottom\"><i class=\"fa fa-thumbs-up\"></i>点赞</button>\n" +
+                            "                <!--头像+名字+发表时间-->\n" +
+                            "                <img src=\"http://cdn.w3schools.wang/img_avatar2.png\" alt=\"Avatar\" class=\"w3-left w3-circle w3-margin-right\" style=\"width:60px\">\n" +
+                            "                <span class=\"w3-right w3-opacity\">"+time+"前"+"</span>\n" +
+                            "                <h4>" + list.userName + "</h4><br>\n" +
+                            "                <hr class=\"w3-clear\">\n" +
+                            "\n" +
+                            "                <!--微博内容-->\n" +
+                            "                <p>" + list.msgContent + "</p>\n" +
+                            "                <div class=\"w3-row-padding\" style=\"margin:0 -16px\">\n" +
+                            "                    <div class=\"w3-half\">\n" +
+                            "                        <img src=\"http://cdn.w3schools.wang/img_lights.jpg\" style=\"width:100%\" alt=\"Northern Lights\" class=\"w3-margin-bottom\">\n" +
+                            "                    </div>\n" +
+                            "                    <div class=\"w3-half\">\n" +
+                            "                        <img src=\"http://cdn.w3schools.wang/img_nature.jpg\" style=\"width:100%\" alt=\"Nature\" class=\"w3-margin-bottom\">\n" +
+                            "                    </div>\n" +
+                            "                </div>\n" +
+                            "                <!--点赞按钮和评论按钮-->\n" +
+                            "                <button id=\"to-like-"+list.msgId+"\" msgId=\""+list.msgId+"\" type=\"button\" class=\"w3-btn w3-theme-d1 w3-margin-bottom\"><i class=\"fa fa-thumbs-up\"></i>点赞</button>\n" +
                             "            <button id=\"to-comment\" type=\"button\" onclick=\"document.getElementById('id02').style.display='block';commentButton("+list.msgId+")\" class=\"w3-btn w3-theme-d1 w3-margin-bottom\"><i class=\"fa fa-comment\"></i>评论</button>\n" +
-                        "                <button type=\"button\" onclick=\"document.getElementById('id01').style.display='block';forwardButton("+list.msgId+")\" class=\"w3-btn w3-theme-d2 w3-margin-bottom\"><i class=\"fa fa-comment\"></i>转发</button>\n"+
-                        "                <button id=\"to-collect-"+list.msgId+"\"  msgId=\""+list.msgId+"\" type=\"button\" class=\"w3-btn w3-theme-d2 w3-margin-bottom w3-padding-right\"><i class=\"fa fa-star\"></i>收藏</button>\n"+
-                        "            </div>");
+                            "                <button type=\"button\" onclick=\"document.getElementById('id01').style.display='block';forwardButton("+list.msgId+")\" class=\"w3-btn w3-theme-d2 w3-margin-bottom\"><i class=\"fa fa-comment\"></i>转发</button>\n"+
+                            "                <button id=\"to-collect-"+list.msgId+"\"  msgId=\""+list.msgId+"\" type=\"button\" class=\"w3-btn w3-theme-d2 w3-margin-bottom w3-padding-right\"><i class=\"fa fa-star\"></i>收藏</button>\n"+
+                            "            </div>");
                     $("#middle-column").append(card);
                 })
             }
         })
     })
-
     /**
      * 以下两个函数为了传递参数到评论和转发的弹出框
      * @param msgId
@@ -400,15 +394,12 @@
     function commentButton(msgId) {
         document.getElementById("msgid").value=msgId;
     }
-
-
     /**
      * 以下三个jquery函数实现的逻辑类似，都是通过jquery事件委托（on或者delegate均可）的函数，对上面动态添加的微博内容的
      * 元素进行函数绑定
      */
     //添加评论加载
     $("div#middle-column").delegate("button#to-comment","click",function(){
-
         $("div#comment-list").empty();
         var url = "/json/Comments.action";
         var msgId = document.getElementById("msgid").value;
@@ -420,33 +411,25 @@
             success: function (data) {
                 $.each(data, function (i,list) {
                     var commentcard = $("<div class=\"w3-card\">\n" +
-                        "                                <p>"+list.commentContent+"</p>\n" +
-                        "                            </div>");
+                            "                                <p>"+list.commentContent+"</p>\n" +
+                            "                            </div>");
                     $("#comment-list").append(commentcard);
                 })
             }
         })
-
     });
-
     //收藏函数调用
-
     $("div#middle-column").on("click","button[id^='to-collect-']",function(){
-
-
         /**
          *  这里和下面的类似，通过this表示msgId属性是当前按钮的属性
          *  一定要遵守这样的格式，否则不能根据不同卡片的按钮返回不同的msgId
          *  点赞功能实现同解
          */
-
         var msgId=$(this).attr("msgId");
         alert(msgId);
         var userId=<%=(Integer)session.getAttribute("userId")%>
         var url="/json/collect.action";
-
         //判断微博是否已经收藏
-
         $.ajax({
             url:url,
             data:{"msgId":msgId,"userId":userId},
@@ -456,13 +439,9 @@
                 alert("成功收藏");
             }
         })
-
     });
-
-
     //点赞调用
     $("div#middle-column").on("click","button[id^='to-like-']",function(){
-
         var msgId=$(this).attr('msgId');
         alert(msgId);
         var url="/json/like.action";
@@ -474,17 +453,10 @@
             dataType:"json",
             success:function(result){
                 alert("成功点赞");
-
             }
         })
-
-
-
     });
-
-
 </script>
 
 </body>
 </html>
-
