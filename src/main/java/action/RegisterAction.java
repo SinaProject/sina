@@ -3,12 +3,14 @@ package action;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import entity.User;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import service.UserService;
 import utils.UserForm;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -20,7 +22,19 @@ public class RegisterAction extends ActionSupport {
     private UserForm user;
 
 
-    /**
+    public void setUsername(String username) {
+        this.userName = userName;
+    }
+
+    private  String userName;
+
+    private User userDetail;
+
+    private List<User> users;
+
+
+
+    /**n
      * 定义一个字符串返回结果
      * 以告知前端重复用户名校验结果
      */
@@ -86,5 +100,29 @@ public class RegisterAction extends ActionSupport {
         return SUCCESS;
     }
 
+
+    //编辑，新增
+    public String edit(){
+        users=userService.getAll();
+        if(userName != null) //修改
+        {
+            userDetail=userService.getByUserName(userName);
+
+        }
+        return "EDIT_SUCCESS";
+    }
+
+    public String save(){
+        if (userName != null){
+            userService.updateUser(userDetail);
+        }
+        else
+        {
+            userService.addUser(userDetail);
+        }
+        return "SAVE_SUCCESS";
+
+
+    }
 
 }

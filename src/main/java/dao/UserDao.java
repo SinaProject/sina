@@ -32,4 +32,7 @@ public interface UserDao {
 
      User getUser(String username) throws HibernateException;
 
+
+     //修改用户信息
+     void updateUser(User user);
 }

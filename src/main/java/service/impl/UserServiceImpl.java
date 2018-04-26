@@ -64,4 +64,30 @@ public class UserServiceImpl implements UserService{
         }
         return false;
     }
+
+    public List<User> getAll(){
+        return userDao.getAllUser();
+    }
+
+    public User getByUserName(String userName){
+        List<User> userList = userDao.getAllUser();
+        for(User user:userList){
+            if(user.getUserName().equals(userName)
+                    &&user.getPassword().equals(userName)){
+                return user;
+            }
+        }
+        return null;
+    }
+
+    public void addUser(User user){
+
+    }
+
+    public void updateUser(User user){
+        userDao.updateUser(user);
+
+
+
+    }
 }
