@@ -42,6 +42,14 @@ public class RegisterAction extends ActionSupport {
      * @return
      */
 
+    public String getResult() {
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
+    }
+
     public String execute() {
         try {
 
