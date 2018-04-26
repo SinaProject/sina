@@ -102,6 +102,8 @@ public class MsgDaoImpl implements MsgDao {
 
     }
 
+
+
     /**
      * 更新点赞数
      * @param msgId
