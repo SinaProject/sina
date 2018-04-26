@@ -49,7 +49,7 @@
 				<td>${user.userBlogAddress}</td>
 				<td>${user.userBirth}</td>
 				<td>${user.userRole}</td>
-				<td><button></button><buttom></buttom></td>
+				<td><button type="submit">删除</button><buttom>修改</buttom></td>
 			</tr>
 		</c:foreach>
 	</table>
