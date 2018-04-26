@@ -18,15 +18,12 @@
     <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
     <script type="text/javascript" src="md5.js"></script>
 </head>
-
 <body>
 
 <!--登陆和注册页面均实现了md5密码加密存储进数据库，无需解密，直接对比即可-->
 
-
-<div class="w3-container w3-margin-32 w3-card-4">
-
-    <form id="login-form" action="login.action">
+<div class="w3-container w3-half w3-margin-top">
+    <form id="login-form" action="login.action" class="w3-container w3-card-4">
         <p>
             <label>用户名</label>
             <input type="text" name="user.username"  class="w3-input" style="width:90%" required="true"/>
@@ -43,6 +40,8 @@
             <a href="/Register.jsp">没有账户？</a>
         </span>
     </form>
+
+
 </div>
 
 <script>
