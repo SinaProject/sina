@@ -1,11 +1,15 @@
 package service;
 
+import entity.Msg;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.util.Assert;
 import utils.MsgForm;
+
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -31,5 +35,11 @@ public class MsgServiceTest {
         msgForm.setMsgIsForward("N");
         msgService.addTweet(msgForm);
 
+    }
+
+    @Test
+    public void getTeetsForUser(){
+        List<Msg> msgList=msgService.getAllTweetsForUser(1);
+        Assert.notNull(msgList);
     }
 }

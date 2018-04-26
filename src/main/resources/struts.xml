@@ -74,6 +74,18 @@
                 Profile.jsp
             </result>
         </action>
+
+        <action name="userTweets" class="action.TweetAction" method="findAllGoodsForUser">
+            <result name="success" type="json">
+                <param name="root">msgList</param>
+            </result>
+        </action>
+
+        <action name="deleteTweet" class="action.TweetAction" method="deleteTweet">
+            <result name="success" type="json">
+                PersonalManage.jsp
+            </result>
+        </action>
     </package>
 
 

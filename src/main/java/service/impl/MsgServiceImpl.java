@@ -65,4 +65,13 @@ public class MsgServiceImpl implements MsgService {
     public void likeTeet(int msgId) {
         msgDao.updateTweetOnLike(msgId);
     }
+
+    public List<Msg> getAllTweetsForUser(int userId){
+        return msgDao.getAllTweetsForUser(userId);
+    }
+
+    @Override
+    public void deleteTweet(int msgId) {
+        msgDao.deleteTweet(msgId);
+    }
 }

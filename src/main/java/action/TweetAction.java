@@ -101,4 +101,15 @@ public class TweetAction extends ActionSupport implements SessionAware{
         return SUCCESS;
     }
 
+    public String findAllGoodsForUser(){
+        this.msgList=msgService.getAllTweetsForUser((Integer)session.get("userId"));
+
+        return SUCCESS;
+    }
+
+    public String deleteTweet(){
+
+        msgService.deleteTweet(msg.getMsgId());
+        return SUCCESS;
+    }
 }

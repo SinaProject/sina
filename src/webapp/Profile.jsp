@@ -36,7 +36,7 @@
 <div class="w3-top">
     <ul class="w3-navbar w3-theme-d2 w3-left-align w3-large">
         <li class="w3-hide-medium w3-hide-large w3-opennav w3-right">
-            <a class="w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);"
+            <a class="w3-padding-large w3-hover-white w3-large w3-theme-d2" href="/Profile.jsp"
                onclick="openNav()"><i class="fa fa-bars"></i></a>
         </li>
         <li><a href="#" class="w3-padding-large w3-theme-d4"><i class="fa fa-home w3-margin-right"></i>Tweet</a></li>
@@ -50,12 +50,15 @@
             <a href="#" class="w3-padding-large w3-hover-white" title="Notifications"><i class="fa fa-bell"></i><span
                     class="w3-badge w3-right w3-small w3-green">3</span></a>
             <div class="w3-dropdown-content w3-white w3-card-4">
-                <a href="#">One new friend request</a>
-                <a href="#">John Doe posted on your wall</a>
-                <a href="#">Jane likes your post</a>
+                <a href="#">@我的</a>
+                <a href="#">评论</a>
+                <a href="#">赞</a>
+                <a href="#">私信</a>
+                <a href="#">未关注人私信</a>
+                <a href="#">群通知</a>
             </div>
         </li>
-        <li class="w3-hide-small w3-right"><a href="#" class="w3-padding-large w3-hover-white" title="My Account"><img
+        <li class="w3-hide-small w3-right"><a href="/PersonalManage.jsp" class="w3-padding-large w3-hover-white" title="My Account"><img
                 src="http://cdn.w3schools.wang/img_avatar2.png" class="w3-circle" height="25" width="25"
                 alt="Avatar"></a></li>
     </ul>
@@ -298,17 +301,6 @@
     <!-- End Page Container -->
 </div>
 <br>
-
-<!-- Footer -->
-<footer class="w3-container w3-theme-d3 w3-padding-16">
-    <h5>Footer</h5>
-</footer>
-
-<footer class="w3-container w3-theme-d5">
-    <p>Powered by <a href="http://w3schools.wang/" target="_blank">w3.css</a></p>
-</footer>
-
-
 
 <script>
 

@@ -21,4 +21,8 @@ public interface MsgService {
     public List<Msg> getAllTweet();
 
     public void likeTeet(int msgId);
+
+    public List<Msg> getAllTweetsForUser(int userId);
+
+    public void deleteTweet(int msgId);
 }

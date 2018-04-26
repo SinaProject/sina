@@ -87,12 +87,18 @@ public class MsgDaoImpl implements MsgDao {
      */
 
     public void deleteTweet(int msgId) {
-        Msg msg = getTweet(msgId);
-        if(msg!=null){
-            sessionFactory.getCurrentSession().delete(msg);
-        }else {
-            //TODO 删除的异常处理
-        }
+
+        String sql="DELETE from msg WHERE msgId=?";
+        SQLQuery sqlQuery=sessionFactory.getCurrentSession().createSQLQuery(sql);
+        sqlQuery.setParameter(0,msgId);
+        sqlQuery.executeUpdate();
+        //由于msg实体类中对应数据库字段关系有设计错误，暂时弃用该方法
+//        Msg msg = getTweet(msgId);
+//        if(msg!=null){
+//            sessionFactory.getCurrentSession().delete(msg);
+//        }else {
+//
+//        }
 
     }
 
