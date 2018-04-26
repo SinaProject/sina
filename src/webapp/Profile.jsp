@@ -84,8 +84,8 @@
             <div class="w3-card-2 w3-round w3-white">
                 <div class="w3-container">
                     <h4 class="w3-center">My Profile</h4>
-                    <p class="w3-center"><img src="http://cdn.w3schools.wang/img_avatar3.png" class="w3-circle"
-                                              height="106" width="106" alt="Avatar"></p>
+                    <p class="w3-center"><a href=/PersonalManage.jsp><img src="http://cdn.w3schools.wang/img_avatar3.png" class="w3-circle w3-hover-opacity"
+                                                         height="106" width="106" alt="Avatar"></a></p>
                     <hr>
                     <p><i class="fa fa-pencil w3-margin-right w3-text-theme"></i> Designer, UI</p>
                     <p><i class="fa fa-home w3-margin-right w3-text-theme"></i> London, UK</p>

@@ -13,8 +13,8 @@
     <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
 
 </head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="text-align:left;width=device-text-align:left;width, initial-scale=1">
+<meta name="viewport" content="text-align:left;width=device-text-align:left;width, initial-scale=1">
 <link rel="stylesheet" href="../default/resources/style/w3_try.css">
 <style>
     .city {display:none;}
@@ -60,22 +60,23 @@
 <div style="margin-left:auto;margin-right:auto;margin-top:70px; text-align:center;width:60%;height:200px;background-image: url('http://img.hb.aicdn.com/95cc92a367b8b42621861552802ba379494b43469c121-REn1fb_fw658')">
     <img src="http://img.hb.aicdn.com/95cc92a367b8b42621861552802ba379494b43469c121-REn1fb_fw658"  class="w3-circle"
          height="100dx" width="100dx" alt="Avatar" style="margin-top: 50px"/>
-    <div  style="margin-top: 6px;color: #fff;text-align: center;text-shadow: 0 0 4px rgba(0,0,0,0.5);vertical-align: text-bottom;">Shrylynh
+    <div  style="margin-top: 6px;color: #fff;text-align: center;text-shadow: 0 0 4px rgba(0,0,0,0.5);vertical-align: text-bottom;">Nicole
         <%--<span class="icon_bed"><a><i class="W_icon icon_pf_female"></i></a></span>--%>
     </div>
     <div style="margin-top: 4px;text-align: center;color: #fff;line-height: 18px;text-shadow: 0 0 4px rgba(0,0,0,0.5);">
         " yesterday is history, tomorrow is a mystery, but today is the present. "
     </div>
 </div>
+
 <ul class="w3-navbar w3-border w3-light-grey w3-center" style="margin-left:auto;margin-right:auto; text-align:center;width:60%">
-    <li style="width:50%"><a href="#">我的主页</a></li>
+    <li style="width:50%"><a href="/Profile.jsp">我的主页</a></li>
     <li style="width:50%"><a href="#">我的相册</a></li>
 </ul>
 
 <div class="w3-container w3-content" style="margin-left:auto;margin-right:auto; text-align:center;width:62%;margin-top:10px">
     <!-- Middle Column -->
     <div id="middle-column" class="w3-col ">
-        <nav class="w3-sidenav w3-light-grey w3-card-2" style="width:130px;height:400px;position: absolute">
+        <nav class="w3-sidenav w3-light-grey w3-card-2" style="text-align:left;width:130px;height:400px;position: absolute">
             <div class="w3-container">
                 <h5>Menu</h5>
             </div>
@@ -86,53 +87,53 @@
         <div style="margin-left:130px">
 
             <div id="info" class="w3-container city">
-                <table class="w3-table w3-striped w3-bordered w3-border w3-hoverable">
-                    <tr>
-                        <td>登录名</td>
-                        <td>188888</td>
-                        <td> <a onclick="document.getElementById('id01').style.display='block'" >修改密码</a></td>
-                        <%--<button onclick="document.getElementById('id01').style.display='block'" class="w3-btn w3-green w3-large">Login</button>--%>
-                    </tr>
+        <form id="setup-form" action="setupAction.action" class="w3-container w3-card-4">
 
-                    <tr>
-                        <td>昵称</td>
-                        <td>Smith</td>
-                        <td>编辑</td>
-                    </tr>
-                </table>
-
+            <div style="text-align:left;">
+                <label style="text-align:justify;">密码  :</label>
+                <input id="pwd" type="password" name="userDetail.password"   style="text-align:left;width:80%" required="true"/>
             </div>
+            </br>
+            <div style="text-align:left;">
+                <label style="text-align:justify;">性别  :</label>
+                <input type="text" id="sex" name="userDetail.username"  style="text-align:left;width:80%" required="true"/>
+            </div>
+            </br>
+            <div style="text-align:left;">
+                <label style="text-align:justify;">电话  :</label>
+                <input type="text" id="userPhone" name="userDetail.username"  style="text-align:left;width:80%" required="true"/>
+            </div>
+            </br>
+            <div style="text-align:left;">
+                <label>生日  :</label>
+                <input type="text" id="userBirth" name="userDetail.username"  style="text-align:left;width:80%" required="true"/>
+            </div>
+            </br>
+            <div style="text-align:left;">
+                <label style="text-align:justify;">博客地址:</label>
+                <input type="text" id="userBlogAddress" name="userDetail.username"  style="text-align:left;width:80%" required="true"/>
+            </div>
+            </br>
+            <div style="text-align:left;">
+                <label>个人简介:</label>
+                <input type="text" id="userInfo" name="userDetail.username"  style="text-align:left;width:90%" required="true"/>
+            </div>
+        <div>
+            <button type="submit" onclick="md5()" class="w3-btn w3-section w3-teal w3-ripple">提交修改</button>
+        </div>
+
+        </form>
+
+
+    </div>
             <div id="id01" class="w3-modal">
-                <span onclick="document.getElementById('id01').style.display='none'" class="w3-closebtn w3-hover-red w3-container w3-padding-16 w3-display-topright">&times;</span>
-                <div class="w3-modal-content w3-card-8 w3-animate-zoom" style="max-width:600px">
 
-                    <div class="w3-center"><br>
-                        <img src="img_avatar4.png" alt="Avatar" style="width:30%" class="w3-circle w3-margin-top">
-                    </div>
-
-                    <div class="w3-container">
-                        <div class="w3-section">
-                            <label><b>Username</b></label>
-                            <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Username">
-
-                            <label><b>Password</b></label>
-                            <input class="w3-input w3-border" type="text" placeholder="Enter Password">
-
-                            <button class="w3-btn w3-btn-block w3-green">Login</button>
-                            <input class="w3-check w3-margin-top" type="checkbox" checked="checked"> Remember me
-                        </div>
-                    </div>
-
-                    <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
-                        <button onclick="document.getElementById('id01').style.display='none'" type="button" class="w3-btn w3-red">Cancel</button>
-                        <span class="w3-right w3-padding w3-hide-small">Forgot <a href="#">password?</a></span>
-                    </div>
-
-                </div>
             </div>
 
 
         </div>
+
+
 
         <script>
             function openCity(evt, cityName) {
@@ -152,7 +153,6 @@
 
 
 
-
         <!-- End Middle Column -->
     </div>
 
@@ -162,7 +162,7 @@
 <br>
 
 <!-- Footer -->
-<%--<div style="position:absolute;bottom:0;width:100%;height:100px;background-color: #ffc0cb;">--%>
+<%--<div style="position:absolute;bottom:0;text-align:left;width:100%;height:100px;background-color: #ffc0cb;">--%>
 <%--<footer class="w3-container w3-theme-d3 w3-padding-16">--%>
 <%--<h5>Footer</h5>--%>
 <%--</footer>--%>

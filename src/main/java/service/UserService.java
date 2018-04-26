@@ -20,11 +20,15 @@ public interface UserService {
 
     Boolean isUsernameExists(String username) throws HibernateException;
 
-    void updateUser(User user);
+    void updateUser(User user,String userName);
 
     List<User> getAll();
 
     User getByUserName(String userName);
 
     void addUser(User user);
+
+    User  getByUserId(Integer userId);
+
+    User getUserById(int userId);
 }

@@ -84,10 +84,24 @@ public class UserServiceImpl implements UserService{
 
     }
 
-    public void updateUser(User user){
-        userDao.updateUser(user);
+    public void updateUser(User user,String userName){
+        userDao.updateUser(user,userName);
 
+    }
 
+    public User getByUserId(Integer userId){
+        List<User> userList = userDao.getAllUser();
+        for(User user:userList){
+            if(user.getUserId() == userId
+                    ){
+                return user;
+            }
+        }
+        return null;
+    }
+
+    public User getUserById(int userId) throws HibernateException{
+        return userDao.getUser(userId);
 
     }
 }

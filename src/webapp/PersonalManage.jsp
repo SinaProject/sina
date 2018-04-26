@@ -57,7 +57,7 @@
 <div style="margin-left:auto;margin-right:auto;margin-top:70px; text-align:center;width:60%;height:200px;background-image: url('http://img.hb.aicdn.com/95cc92a367b8b42621861552802ba379494b43469c121-REn1fb_fw658')">
     <img src="http://img.hb.aicdn.com/95cc92a367b8b42621861552802ba379494b43469c121-REn1fb_fw658"  class="w3-circle"
          height="100dx" width="100dx" alt="Avatar" style="margin-top: 50px"/>
-    <div  style="margin-top: 6px;color: #fff;text-align: center;text-shadow: 0 0 4px rgba(0,0,0,0.5);vertical-align: text-bottom;">Shrylynh
+    <div  style="margin-top: 6px;color: #fff;text-align: center;text-shadow: 0 0 4px rgba(0,0,0,0.5);vertical-align: text-bottom;">Nicole
         <%--<span class="icon_bed"><a><i class="W_icon icon_pf_female"></i></a></span>--%>
     </div>
     <div style="margin-top: 4px;text-align: center;color: #fff;line-height: 18px;text-shadow: 0 0 4px rgba(0,0,0,0.5);">
@@ -65,8 +65,9 @@
     </div>
 </div>
 <ul class="w3-navbar w3-border w3-light-grey w3-center" style="margin-left:auto;margin-right:auto; text-align:center;width:60%">
-    <li style="width:50%"><a href="#">我的主页</a></li>
-    <li style="width:50%"><a href="#">我的相册</a></li>
+    <li style="width:33%"><a href="/Profile.jsp">我的主页</a></li>
+    <li style="width:33%"><a href="#">我的相册</a></li>
+    <li style="width:33%"><a href="/Setup.jsp">设置</a></li>
 </ul>
 
 <div class="w3-container w3-content" style="margin-left:auto;margin-right:auto; text-align:center;width:62%;margin-top:10px">
@@ -75,7 +76,7 @@
         <!-- Left Column -->
         <div class="w3-col m3">
             <ul class="w3-navbar w3-border w3-light-grey w3-center" style="margin-left:auto;margin-right:auto; text-align:center">
-                <li style="width:33.3%"><a href="#">关注</a></li>
+                <li style="width:33.3%"><a href="/Follow.jsp">关注</a></li>
                 <li style="width:33.3%"><a href="#">粉丝</a></li>
                 <li style="width:33.3%"><a href="#">微博</a></li>
             </ul>
@@ -165,7 +166,7 @@
         </div>
 
         <!-- Middle Column -->
-        <div id="middle-column" class="w3-col m9" style="text-align: left">
+        <div id="middle-column" class="w3-col m9">
 
             <!--发表微博-->
             <div class="w3-row-padding">
@@ -173,7 +174,7 @@
                     <div class="w3-card-2 w3-round w3-white">
                         <div class="w3-container w3-padding">
                             <h6 class="w3-opacity">今天有啥新感想呢？</h6>
-                            <form action="tweet.action">
+                            <form action="tweet2.action">
                                 <p>
                                     <input type="text" name="msg.msgContent" placeholder="今日状态：感到忧伤" class="w3-border w3-input"/>
                                 </p>
@@ -187,33 +188,50 @@
             </div>
 
 
-
-            <!--此处weibo内容由js加入-->
-
-
-
-
-            <!--评论框-->
-            <div id="id02" class="w3-modal">
-                <span onclick="document.getElementById('id02').style.display='none'"
+        <!--转发框-->
+        <div id="id01" class="w3-modal">
+                <span onclick="document.getElementById('id01').style.display='none'"
                       class="w3-closebtn w3-hover-red w3-container w3-padding-16 w3-display-topright w3-xxlarge">×</span>
-                <div class="w3-modal-content w3-card-8 w3-animate-zoom" style="max-width:400px">
+            <div class="w3-modal-content w3-card-8 w3-animate-zoom" style="max-width:400px">
 
-                    <div class="w3-container">
-                        <div class="w3-section">
-                            <label id="comment-content"><b>请输入评论内容</b></label>
-                            <form id="comment-form" action="comment.action">
-                                <input id="_userid" type="hidden" name="commentForm.userId" value="<%=session.getAttribute("userId")%>"/>
-                                <input id="commentid" type="hidden" name="commentForm.commentId"/>
-                                <input class="w3-input w3-border w3-hover-border-black w3-margin-bottom" type="text" name="comment.commentContent">
-                                <button id="comment-test" type="submit" class="w3-btn w3-btn-block w3-green w3-section">评论</button>
-                            </form>
+                <div class="w3-container">
+                    <div class="w3-section">
+                        <label id="forward-content"><b>请输入转发内容</b></label>
+                        <form id="forward-form" action="tweet.action">
+                            <input id="userid" type="hidden" name="msg.userId" value="<%=session.getAttribute("userId")%>"/>
+                            <input id="forwardid" type="hidden" name="msg.forwardId"/>
+                            <input type="hidden" name="msg.msgIsForward" value="Y">
+                            <input class="w3-input w3-border w3-hover-border-black w3-margin-bottom" type="text" name="msg.msgContent">
+                            <button id="forward-test" type="submit" class="w3-btn w3-btn-block w3-green w3-section">转发</button>
+                        </form>
 
-                        </div>
                     </div>
                 </div>
             </div>
-            <!-- End Middle Column -->
+        </div>
+        <!--评论框-->
+        <div id="id02" class="w3-modal">
+                <span onclick="document.getElementById('id02').style.display='none'"
+                      class="w3-closebtn w3-hover-red w3-container w3-padding-16 w3-display-topright w3-xxlarge">×</span>
+            <div class="w3-modal-content w3-card-8 w3-animate-zoom" style="max-width:400px">
+
+                <div class="w3-container">
+                    <div class="w3-section">
+                        <label id="comment-content"><b>请输入评论内容</b></label>
+                        <form id="comment-form" action="comment.action">
+                            <input id="_userid" type="hidden" name="commentForm.userId" value="<%=session.getAttribute("userId")%>"/>
+                            <input id="msgid" type="hidden" name="commentForm.msgId"/>
+                            <input class="w3-input w3-border w3-hover-border-black w3-margin-bottom" type="text" name="comment.commentContent">
+                            <button id="comment" type="submit" class="w3-btn w3-btn-block w3-green w3-section">评论</button>
+                        </form>
+                    </div>
+                    <div id="comment-list" style="padding: 5px">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Middle Column -->
         </div>
 
 

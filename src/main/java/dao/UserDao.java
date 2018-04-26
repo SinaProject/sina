@@ -34,5 +34,5 @@ public interface UserDao {
 
 
      //修改用户信息
-     void updateUser(User user);
+     void updateUser(User user, String userName);
 }
