@@ -236,7 +236,7 @@
                             <form id="comment-form" action="comment.action">
                                 <input id="_userid" type="hidden" name="commentForm.userId" value="<%=session.getAttribute("userId")%>"/>
                                 <input id="msgid" type="hidden" name="commentForm.msgId"/>
-                                <input class="w3-input w3-border w3-hover-border-black w3-margin-bottom" type="text" name="comment.commentContent">
+                                <input class="w3-input w3-border w3-hover-border-black w3-margin-bottom" type="text" name="commentForm.commentContent">
                                 <button id="comment" type="submit" class="w3-btn w3-btn-block w3-green w3-section">评论</button>
                             </form>
                         </div>

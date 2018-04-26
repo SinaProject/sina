@@ -9,7 +9,7 @@
             <column name="commentID" sql-type="int(11)"/>
         </id>
         <property name="commentContent">
-            <column name="commentContent" sql-type="varchar(200)" length="200" not-null="true"/>
+            <column name="commentContent" sql-type="varchar(200)" length="200" not-null="false"/>
         </property>
         <property name="commentTime">
             <column name="commentTime" sql-type="datetime" not-null="false"/>
