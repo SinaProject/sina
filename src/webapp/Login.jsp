@@ -32,6 +32,7 @@
             <label>密码</label>
             <input id="pwd" type="password" name="user.password"  class="w3-input" style="width:90%" required="true"/>
         </p>
+
         <p>
             <button type="submit" onclick="md5()" class="w3-btn w3-section w3-teal w3-ripple">登陆</button>
             <!-- <label style="float:right"><input type="checkbox" name="isAdmin" >管理员用户？</label> -->

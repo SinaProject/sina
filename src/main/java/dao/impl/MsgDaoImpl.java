@@ -26,11 +26,11 @@ public class MsgDaoImpl implements MsgDao {
 
     /**
 
-     *@描述 获得某一用户的某一条微博
+     *@描述 获得某一用户的某�?条微�?
 
      *@参数  int msgId, int userId
 
-     *@返回值  Msg
+     *@返回�?  Msg
 
      */
     public Msg getTweet(int msgId) {
@@ -39,11 +39,11 @@ public class MsgDaoImpl implements MsgDao {
 
     /**
 
-     *@描述 获得某一用户的所有微博
+     *@描述 获得某一用户的所有微�?
 
      *@参数  int userId
 
-     *@返回值  List<Msg>
+     *@返回�?  List<Msg>
 
      */
 
@@ -64,11 +64,11 @@ public class MsgDaoImpl implements MsgDao {
 
     /**
 
-     *@描述 增加一条微博
+     *@描述 增加�?条微�?
 
      *@参数  Msg msg
 
-     *@返回值
+     *@返回�?
 
      */
 
@@ -78,11 +78,11 @@ public class MsgDaoImpl implements MsgDao {
 
     /**
 
-     *@描述 删除一条微博
+     *@描述 删除�?条微�?
 
      *@参数  int msgId,int userId
 
-     *@返回值
+     *@返回�?
 
      */
 
@@ -91,13 +91,13 @@ public class MsgDaoImpl implements MsgDao {
         if(msg!=null){
             sessionFactory.getCurrentSession().delete(msg);
         }else {
-            //TODO 删除的异常处理
+            //TODO 删除的异常处�?
         }
 
     }
 
     /**
-     * 更新点赞数
+     * 更新点赞�?
      * @param msgId
      */
 

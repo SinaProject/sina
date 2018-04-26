@@ -21,7 +21,7 @@ public class RegisterAction extends ActionSupport {
 
 
     /**
-     * 定义一个字符串返回结果
+     * 定义�?个字符串返回结果
      * 以告知前端重复用户名校验结果
      */
     private String result;
@@ -66,8 +66,8 @@ public class RegisterAction extends ActionSupport {
 
 
     /**
-     * 用户名校验函数
-     * 仅返回校验结果
+     * 用户名校验函�?
+     * 仅返回校验结�?
      * 由前端对结果再进行页面显示处理（已完成）
      * @return
      */
@@ -78,7 +78,6 @@ public class RegisterAction extends ActionSupport {
 
         if(userService.isUsernameExists(user.getUsername())){
             this.result = "yes";
-
         }else {
            this.result="no";
         }

@@ -27,7 +27,7 @@ public class UserDaoImpl implements UserDao{
 
      *@参数
 
-     *@返回值
+     *@返回�?
 
      */
     public Object saveObject(User user) throws HibernateException {
@@ -41,7 +41,7 @@ public class UserDaoImpl implements UserDao{
 
      *@参数
 
-     *@返回值
+     *@返回�?
 
      */
 
@@ -51,11 +51,11 @@ public class UserDaoImpl implements UserDao{
 
     /**
 
-     *@描述 删除一个用户
+     *@描述 删除�?个用�?
 
      *@参数
 
-     *@返回值
+     *@返回�?
 
      */
 
@@ -69,7 +69,7 @@ public class UserDaoImpl implements UserDao{
 
      *@参数
 
-     *@返回值
+     *@返回�?
 
      */
     public List<User> getAllUser() throws HibernateException {

@@ -20,8 +20,8 @@ public class UserServiceImpl implements UserService{
 
 
     /**
-     *  由于userRole为非空字段
-     *  这里默认注册时将用户设置为普通用户身份
+     *  由于userRole为非空字�?
+     *  这里默认注册时将用户设置为普通用户身�?
      *  （将来可进一步进行身份验证优化）
      * @param userForm
      * @return
@@ -51,7 +51,7 @@ public class UserServiceImpl implements UserService{
 
 
     /**
-     * 验证用户名是否重复时用到的逻辑
+     * 验证用户名是否重复时用到的�?�辑
      * Dao层由Byname查询实现
      * @param username
      * @return
