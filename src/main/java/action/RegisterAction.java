@@ -3,16 +3,24 @@ package action;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import entity.User;
 import net.sf.json.JSONObject;
+import org.apache.struts2.interceptor.SessionAware;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import service.UserService;
 import utils.UserForm;
 
+import java.sql.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+public class RegisterAction extends ActionSupport implements SessionAware {
 
-public class RegisterAction extends ActionSupport {
 
     private static final long serialVersionUID = 1L;
 
@@ -20,11 +28,43 @@ public class RegisterAction extends ActionSupport {
     private UserForm user;
 
 
-    /**
+    public String getUserName() {
+        return userName;
+    }
+
+    private  String userName;
+
+    public void setUserDetail(User userDetail) {
+
+        this.userDetail=userDetail;
+    }
+
+    private User userDetail;
+
+    private List<User> users;
+
+    private Map session;
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    private Integer userId;
+
+
+
+    /**n
      * 定义一个字符串返回结果
      * 以告知前端重复用户名校验结果
      */
     private String result;
+
+    @Autowired
+    private SessionFactory sessionFactory;
 
     @Autowired
     private UserService userService;
@@ -41,6 +81,18 @@ public class RegisterAction extends ActionSupport {
      *
      * @return
      */
+
+
+    @Override
+    public void setSession(Map session) {
+        this.session=session;
+
+    }
+    public void setUsername() {
+        userId=(Integer) session.get("userId");
+        this.userName=userService.getByUserId(userId).getUserName();
+    }
+
 
     public String getResult() {
         return result;
@@ -79,9 +131,35 @@ public class RegisterAction extends ActionSupport {
         if(userService.isUsernameExists(user.getUsername())){
             result = "yes";
         }else {
-           result="no";
+            result="no";
         }
+        return SUCCESS;
+    }
 
+
+    //编辑，新增
+//    public String edit(){
+//
+//        users=userService.getAll();
+//        if(userName != null) //修改
+//        {
+//            userDetail=userService.getByUserName(userName);
+//
+//        }
+//        return "EDIT_SUCCESS";
+//    }
+
+    public String save(){
+        setUsername();
+        String userName=getUserName();
+
+        if (userName != null){
+            userService.updateUser(userDetail,userName);
+        }
+        else
+        {
+            userService.addUser(userDetail);
+        }
         return SUCCESS;
     }
 

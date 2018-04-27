@@ -38,7 +38,9 @@ public class UserDaoTest {
     @Test
     public void getUserByUsername(){
         String username="tanshangou";
+
         User user=userDao.getUser(username);
 
+        Assert.assertNull(user);
     }
 }

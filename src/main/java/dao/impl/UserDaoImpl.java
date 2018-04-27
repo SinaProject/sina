@@ -3,14 +3,13 @@ package dao.impl;
 
 import dao.UserDao;
 import entity.User;
-import org.hibernate.HibernateException;
-import org.hibernate.Query;
-import org.hibernate.SessionFactory;
+import org.hibernate.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.util.List;
 
 @Repository
@@ -21,6 +20,8 @@ public class UserDaoImpl implements UserDao{
     private SessionFactory sessionFactory;
 
 
+
+
     /**
      *@描述 保存用户
      *@参数
@@ -28,7 +29,7 @@ public class UserDaoImpl implements UserDao{
      */
     public Object saveObject(User user) throws HibernateException {
         return sessionFactory.getCurrentSession().save(user);
-        
+
     }
     /**
 
@@ -54,7 +55,8 @@ public class UserDaoImpl implements UserDao{
 
      */
 
-    public void deleteUser(Serializable id) throws HibernateException {
+    public void deleteUser(User user) throws HibernateException {
+        sessionFactory.getCurrentSession().delete(user);
 
     }
 
@@ -80,10 +82,40 @@ public class UserDaoImpl implements UserDao{
         Query query=sessionFactory.getCurrentSession().createQuery(hql);
         query.setParameter(0,username);
 
-        if(query.list().size()==0){
-            return null;
-        }else{
+        if(query.list().size()!=0){
             return (User)query.list().get(0);
         }
+        return null;
+    }
+
+    public void updateUser(User user, String userName){
+
+        String password_=user.getPassword();
+        String sex_=user.getSex();
+        String userPhone_=user.getUserPhone();
+        String userBlogAddress_=user.getUserBlogAddress();
+        Date userBirth_=user.getUserBirth();
+        String userInfo_=user.getUserInfo();
+
+        String hql="UPDATE User u SET u.password=?, u.sex=?, u.userPhone=?, u.userBlogAddress=?, u.userBirth=?, u.userInfo=? WHERE u.userName=?";
+
+        SQLQuery sqlQuery=sessionFactory.getCurrentSession().createSQLQuery(hql);
+        sqlQuery.setParameter(0,"1111");
+        sqlQuery.setParameter(1,"女");
+        sqlQuery.setParameter(2,"1111");
+        sqlQuery.setParameter(3,"1111");
+        sqlQuery.setParameter(4,"1996-01-11");
+        sqlQuery.setParameter(5,"1111");
+        sqlQuery.setParameter(6,"nicole3");
+        sqlQuery.executeUpdate();
+
+//        sqlQuery.setParameter(0,password_);
+//        sqlQuery.setParameter(1,sex_);
+//        sqlQuery.setParameter(2,userPhone_);
+//        sqlQuery.setParameter(3,userBlogAddress_);
+//        sqlQuery.setParameter(4,userBirth_);
+//        sqlQuery.setParameter(5,userInfo_);
+//        sqlQuery.setParameter(6,userName);
+//        sqlQuery.executeUpdate();
     }
 }

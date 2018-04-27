@@ -26,7 +26,7 @@ public class SystemMessageAction extends ActionSupport {
 
 	/**
 	 * get messages from database
-	 * 
+	 *
 	 * @return
 	 */
 	public String queryMessage() {

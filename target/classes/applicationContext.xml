@@ -55,6 +55,7 @@
             <value>entity.Msg</value>
             <value>entity.Comment</value>
             <value>entity.Collect</value>
+            <value>entity.Fans</value>
         </list>
     </property>
 </bean>

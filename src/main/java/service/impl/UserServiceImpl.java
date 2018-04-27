@@ -60,11 +60,49 @@ public class UserServiceImpl implements UserService{
 
     public Boolean isUsernameExists(String username) throws HibernateException {
 
-
-
         if(userDao.getUser(username)!=null){
             return true;
         }
         return false;
+    }
+
+    public List<User> getAll(){
+        return userDao.getAllUser();
+    }
+
+    public User getByUserName(String userName){
+        List<User> userList = userDao.getAllUser();
+        for(User user:userList){
+            if(user.getUserName().equals(userName)
+                    &&user.getPassword().equals(userName)){
+                return user;
+            }
+        }
+        return null;
+    }
+
+    public void addUser(User user){
+
+    }
+
+    public void updateUser(User user,String userName){
+        userDao.updateUser(user,userName);
+
+    }
+
+    public User getByUserId(Integer userId){
+        List<User> userList = userDao.getAllUser();
+        for(User user:userList){
+            if(user.getUserId() == userId
+                    ){
+                return user;
+            }
+        }
+        return null;
+    }
+
+    public User getUserById(int userId) throws HibernateException{
+        return userDao.getUser(userId);
+
     }
 }

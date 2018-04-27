@@ -26,6 +26,21 @@
             <result name = "success">/Profile.jsp</result>
         </action>
 
+        <action name="tweet2" class="action.Tweet2Action" method="execute">
+            <result name="success">/PersonalManage.jsp</result>
+        </action>
+
+        <action name="setupAction" class="action.RegisterAction" method="save">
+            <result name="success">Profile.jsp</result>
+        </action>
+
+        <action name="adminlogin" class="action.AdminLoginAction">
+            <result name="success">/adminProfile.jsp</result>
+            <result name="error">/Error.jsp</result>
+        </action>
+        <action name="checkUser" class="action.UserAction" method="queryUser">
+            <result name="success">/User.jsp</result>
+        </action>
     </package>
 
     <package name="ajax" namespace="/json" extends="json-default">
@@ -43,7 +58,6 @@
         </action>
 
         <action name="register-validation" class="action.RegisterAction" method="validation">
-
             <!-- 返回类型为json 在sjon-default中定义 -->
             <result type="json">
                 <!-- root的值对应要返回的值的属性 -->
@@ -86,6 +100,22 @@
                 PersonalManage.jsp
             </result>
         </action>
+        <action name="findFollow" class="action.FollowAction" method="findFollow">
+            <result name="success" type="json">
+                <param name="root">userList</param>
+            </result>
+            <result name="error">
+                /Profile.jsp
+            </result>
+        </action>
+
+        <action name="deleteFollow" class="action.FollowAction" method="deleteFollow">
+            <result name="success" type="json">
+                Follow.jsp
+            </result>
+        </action>
+        
+        
     </package>
 
 

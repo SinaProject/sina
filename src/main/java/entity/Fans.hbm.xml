@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="entity.Fans" table="fans" schema="sina">
+        <id name="focusId" column="focusID"/>
+        <property name="fansId" column="fansID"/>
+        <property name="focusTime" column="focusTime"/>
+        <property name="userId" column="userID"/>
+    </class>
+</hibernate-mapping>

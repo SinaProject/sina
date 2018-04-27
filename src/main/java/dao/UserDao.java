@@ -16,13 +16,13 @@ import java.util.List;
 
 public interface UserDao {
 
-     
+
 
      Object saveObject(User user) throws HibernateException ;
 
      User getUser(Serializable id) throws HibernateException;
 
-     void deleteUser(Serializable id) throws HibernateException;
+     void deleteUser(User user) throws HibernateException;
 
      //获取所有用户
 
@@ -32,4 +32,7 @@ public interface UserDao {
 
      User getUser(String username) throws HibernateException;
 
+
+     //修改用户信息
+     void updateUser(User user, String userName);
 }

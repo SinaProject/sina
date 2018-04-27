@@ -1,5 +1,6 @@
 package service;
 
+import entity.User;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -32,5 +33,12 @@ public class UserServiceTest {
         user.setUsername("windpine");
         user.setPassword("23333");
         Assert.assertNotNull(userService.login(user));
+    }
+
+    @Test
+    public void validation(){
+        Boolean usernameExists=userService.isUsernameExists("tanshangou");
+
+        System.out.println(usernameExists);
     }
 }

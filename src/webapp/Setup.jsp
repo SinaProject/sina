@@ -60,15 +60,16 @@
 <div style="margin-left:auto;margin-right:auto;margin-top:70px; text-align:center;width:60%;height:200px;background-image: url('http://img.hb.aicdn.com/95cc92a367b8b42621861552802ba379494b43469c121-REn1fb_fw658')">
     <img src="http://img.hb.aicdn.com/95cc92a367b8b42621861552802ba379494b43469c121-REn1fb_fw658"  class="w3-circle"
          height="100dx" width="100dx" alt="Avatar" style="margin-top: 50px"/>
-    <div  style="margin-top: 6px;color: #fff;text-align: center;text-shadow: 0 0 4px rgba(0,0,0,0.5);vertical-align: text-bottom;">Shrylynh
+    <div  style="margin-top: 6px;color: #fff;text-align: center;text-shadow: 0 0 4px rgba(0,0,0,0.5);vertical-align: text-bottom;">Nicole
         <%--<span class="icon_bed"><a><i class="W_icon icon_pf_female"></i></a></span>--%>
     </div>
     <div style="margin-top: 4px;text-align: center;color: #fff;line-height: 18px;text-shadow: 0 0 4px rgba(0,0,0,0.5);">
         " yesterday is history, tomorrow is a mystery, but today is the present. "
     </div>
 </div>
+
 <ul class="w3-navbar w3-border w3-light-grey w3-center" style="margin-left:auto;margin-right:auto; text-align:center;width:60%">
-    <li style="width:50%"><a href="#">我的主页</a></li>
+    <li style="width:50%"><a href="/Profile.jsp">我的主页</a></li>
     <li style="width:50%"><a href="#">我的相册</a></li>
 </ul>
 
@@ -86,42 +87,43 @@
         <div style="margin-left:130px">
 
             <div id="info" class="w3-container city">
-                <form id="setup-form" action="Register.action" class="w3-container w3-card-4">
-                    <div style="text-align:left;">
-                        <label style="text-align:justify;">用户名:</label>
-                        <label id="userName" name="userName"></label>
+                <form id="setup-form" action="setupAction.action" class="w3-container w3-card-4">
 
-                    </div>
                     <div style="text-align:left;">
-                        <label style="text-align:justify;">密码:</label>
-                        <input id="pwd" type="password" name="userDetail.password"   style="text-align:left;width:30%" required="true"/>
+                        <label style="text-align:justify;">密码  :</label>
+                        <input id="pwd" type="password" name="userDetail.password"   style="text-align:left;width:80%" required="true"/>
                     </div>
+                    </br>
                     <div style="text-align:left;">
-                        <label style="text-align:justify;">性别:</label>
-                        <input type="text" id="sex" name="userDetail.sex"  style="text-align:left;width:90%" required="true"/>
+                        <label style="text-align:justify;">性别  :</label>
+                        <input type="text" id="sex" name="userDetail.username"  style="text-align:left;width:80%" required="true"/>
                     </div>
+                    </br>
                     <div style="text-align:left;">
-                        <label style="text-align:justify;">电话:</label>
-                        <input type="text" id="userPhone" name="userDetail.userPhone"  style="text-align:left;width:90%" required="true"/>
+                        <label style="text-align:justify;">电话  :</label>
+                        <input type="text" id="userPhone" name="userDetail.username"  style="text-align:left;width:80%" required="true"/>
                     </div>
+                    </br>
+                    <div style="text-align:left;">
+                        <label>生日  :</label>
+                        <input type="text" id="userBirth" name="userDetail.username"  style="text-align:left;width:80%" required="true"/>
+                    </div>
+                    </br>
                     <div style="text-align:left;">
                         <label style="text-align:justify;">博客地址:</label>
-                        <input type="text" id="userBlogAddress" name="userDetail.userBlogAddress"  style="text-align:left;width:90%" required="true"/>
+                        <input type="text" id="userBlogAddress" name="userDetail.username"  style="text-align:left;width:80%" required="true"/>
                     </div>
-                    <div style="text-align:left;">
-                        <label>生日:</label>
-                        <input type="text" id="userBirth" name="userDetail.userBirth"  style="text-align:left;width:90%" required="true"/>
-                    </div>
+                    </br>
                     <div style="text-align:left;">
                         <label>个人简介:</label>
-                        <input type="text" id="userInfo" name="userDetail.userInfo"  style="text-align:left;width:90%" required="true"/>
+                        <input type="text" id="userInfo" name="userDetail.username"  style="text-align:left;width:90%" required="true"/>
+                    </div>
+                    <div>
+                        <button type="submit" onclick="md5()" class="w3-btn w3-section w3-teal w3-ripple">提交修改</button>
                     </div>
 
-
-                    <p>
-                        <button type="submit" onclick="save()" class="w3-btn w3-section w3-teal w3-ripple">提交修改</button>
-                    </p>
                 </form>
+
 
             </div>
             <div id="id01" class="w3-modal">
@@ -132,6 +134,22 @@
         </div>
 
 
+
+        <script>
+            function openCity(evt, cityName) {
+                var i, x, tablinks;
+                x = document.getElementsByClassName("city");
+                for (i = 0; i < x.length; i++) {
+                    x[i].style.display = "none";
+                }
+                tablinks = document.getElementsByClassName("tablink");
+                for (i = 0; i < x.length; i++) {
+                    tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
+                }
+                document.getElementById(cityName).style.display = "block";
+                evt.currentTarget.className += " w3-red";
+            }
+        </script>
 
 
 
